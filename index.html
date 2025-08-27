@@ -583,52 +583,60 @@
         setInterval(showPurchaseNotification, 10000 + Math.random() * 5000); // Entre 10 e 15 segundos
 
 
-                // Lógica do Rastreamento de Checkout (VERSÃO 2 - ABERTURA EM NOVA ABA)
-        document.querySelectorAll('.purchase-link').forEach(link => {
-            link.addEventListener("click", function(event) {
-                // 1. Previne o comportamento padrão do link para termos controle total.
-                event.preventDefault();
+                // Lógica do Rastreamento de Checkout (VERSÃO CORRIGIDA E FINAL)
+document.querySelectorAll('.purchase-link').forEach(link => {
+    link.addEventListener("click", function(event) {
+        // 1. Previne o comportamento padrão do link.
+        event.preventDefault();
 
-                const destinationUrl = event.currentTarget.href;
-                const planCard = event.currentTarget.closest('div.flex.flex-col');
-                let planName = 'Plano Desconhecido';
-                let planValue = 0.00;
-                let contentId = 'plano_desconhecido';
+        // Variáveis que vamos preencher
+        const destinationUrl = event.currentTarget.href;
+        let planName = 'Plano Desconhecido';
+        let planValue = 0.00;
+        let contentId = 'plano_desconhecido';
+        
+        // --- CORREÇÃO APLICADA AQUI ---
+        // Em vez de 'div.flex.flex-col', subimos para o elemento pai mais próximo
+        // que engloba todo o card, evitando a captura de elementos vizinhos.
+        const planCard = event.currentTarget.closest('[class*="bg-gray-900"], [class*="bg-gradient-to-b"]');
 
-                if (planCard) {
-                    const planTitleEl = planCard.querySelector('h3');
-                    if (planTitleEl) {
-                        planName = planTitleEl.textContent.trim();
-                        if (planName.includes('Mensal')) {
-                            contentId = 'noskill_plano_mensal';
-                            planValue = 4.97;
-                        } else if (planName.includes('Permanente')) {
-                            contentId = 'noskill_plano_permanente';
-                            planValue = journeyCompleted ? 14.97 : 19.97;
-                        } else if (planName.includes('Trimestral')) {
-                            contentId = 'noskill_plano_trimestral';
-                            planValue = 9.97;
-                        }
-                    }
+        if (planCard) {
+            const planTitleEl = planCard.querySelector('h3');
+            if (planTitleEl) {
+                planName = planTitleEl.textContent.trim();
+                
+                if (planName.includes('Mensal')) {
+                    contentId = 'noskill_plano_mensal';
+                    planValue = 4.97;
+                } else if (planName.includes('Permanente')) {
+                    contentId = 'noskill_plano_permanente';
+                    // A variável 'journeyCompleted' é definida mais acima no seu script,
+                    // então esta lógica continuará funcionando perfeitamente.
+                    planValue = journeyCompleted ? 14.97 : 19.97;
+                } else if (planName.includes('Trimestral')) {
+                    contentId = 'noskill_plano_trimestral';
+                    planValue = 9.97;
                 }
+            }
+        }
 
-                // 2. Dispara o evento do Facebook Pixel.
-                if (typeof fbq === 'function') {
-                    fbq('track', 'InitiateCheckout', {
-                        content_ids: [contentId],
-                        content_name: planName,
-                        value: planValue,
-                        currency: 'BRL'
-                    });
-                }
-
-                // 3. Aguarda um instante e abre a URL de destino em uma NOVA ABA.
-                setTimeout(function() {
-                    window.open(destinationUrl, '_blank');
-                }, 400); 
-
+        // 2. Dispara o evento do Facebook Pixel.
+        if (typeof fbq === 'function') {
+            fbq('track', 'InitiateCheckout', {
+                content_ids: [contentId],
+                content_name: planName,
+                value: planValue,
+                currency: 'BRL'
             });
-        });
+        }
+
+        // 3. Aguarda um instante para garantir o rastreio e abre a URL correta.
+        setTimeout(function() {
+            window.open(destinationUrl, '_blank');
+        }, 400); 
+    });
+});
+
 
         // --- LÓGICA COMPLETA DA SIMULAÇÃO DO APP ---
         const mainToggleBtn = document.getElementById('app-main-toggle-btn');
