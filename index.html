@@ -583,9 +583,13 @@
         setInterval(showPurchaseNotification, 10000 + Math.random() * 5000); // Entre 10 e 15 segundos
 
 
-        // Lógica do Rastreamento de Checkout
+                // Lógica do Rastreamento de Checkout (VERSÃO 2 - ABERTURA EM NOVA ABA)
         document.querySelectorAll('.purchase-link').forEach(link => {
             link.addEventListener("click", function(event) {
+                // 1. Previne o comportamento padrão do link para termos controle total.
+                event.preventDefault();
+
+                const destinationUrl = event.currentTarget.href;
                 const planCard = event.currentTarget.closest('div.flex.flex-col');
                 let planName = 'Plano Desconhecido';
                 let planValue = 0.00;
@@ -608,6 +612,7 @@
                     }
                 }
 
+                // 2. Dispara o evento do Facebook Pixel.
                 if (typeof fbq === 'function') {
                     fbq('track', 'InitiateCheckout', {
                         content_ids: [contentId],
@@ -616,6 +621,14 @@
                         currency: 'BRL'
                     });
                 }
+
+                // 3. Aguarda um instante e abre a URL de destino em uma NOVA ABA.
+                setTimeout(function() {
+                    window.open(destinationUrl, '_blank');
+                }, 400); 
+            });
+        });
+
 
             });
         });
