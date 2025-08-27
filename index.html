@@ -69,36 +69,19 @@
         .notiflix-notify-success .notiflix-notify-message strong {
             color: #4ade80 !important;
         }
-        .marquee-container { overflow: hidden; white-space: nowrap; }
-        .marquee-content { display: inline-block; animation: marquee 30s linear infinite; }
+        .pulse-glow { animation: pulse-glow 2s infinite; }
+        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.4), 0 0 0px 3px rgba(239, 68, 68, 0.6); } 50% { box-shadow: 0 0 40px rgba(239, 68, 68, 0.6), 0 0 0px 3px rgba(239, 68, 68, 0.6); } }
         .ken-burns { animation: kenburns 20s ease-out both infinite; }
+        @keyframes kenburns { 0% { transform: scale(1) translate(0, 0); } 50% { transform: scale(1.1) translate(-2%, 2%); } 100% { transform: scale(1) translate(0, 0); } }
         .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .animate-fade-in { opacity: 1; transform: translateY(0); }
-        .pulse-glow { animation: pulse-glow 2s infinite; }
-        .spin-slow { animation: spin 20s linear infinite; }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
-        @keyframes kenburns { 0% { transform: scale(1) translate(0, 0); } 50% { transform: scale(1.1) translate(-2%, 2%); } 100% { transform: scale(1) translate(0, 0); } }
-        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.4), 0 0 0px 3px rgba(239, 68, 68, 0.6); } 50% { box-shadow: 0 0 40px rgba(239, 68, 68, 0.6), 0 0 0px 3px rgba(239, 68, 68, 0.6); } }
-        @keyframes click-effect { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
-        .clicked { animation: click-effect 0.2s ease-in-out; }
-        @keyframes pulse-attention { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 10px 15px rgba(229, 57, 53, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(229, 57, 53, 0); } }
-        .pulse-attention { animation: pulse-attention 2s infinite; }
-        @keyframes spin-loader { to { transform: rotate(360deg); } }
-        .spin-loader { animation: spin-loader 1s linear infinite; }
         .phone-frame { position: relative; width: 100%; max-width: 410px; aspect-ratio: 410 / 820; background-color: #000; border: 8px solid #111; border-radius: 48px; padding: 8px; box-sizing: border-box; margin: auto; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
-        .phone-screen { position: relative; width: 100%; height: 100%; background-color: #121212; border-radius: 40px; overflow: hidden; color: #FFFFFF; transform: scale(1); }
-        .phone-screen .app-nav-button.active i { color: #E53935; }
+        .phone-screen { position: relative; width: 100%; height: 100%; background-color: #121212; border-radius: 40px; overflow: hidden; color: #FFFFFF; }
         .phone-screen .custom-scrollbar::-webkit-scrollbar { width: 4px; }
         .phone-screen .custom-scrollbar::-webkit-scrollbar-track { background: #1E1E1E; }
         .phone-screen .custom-scrollbar::-webkit-scrollbar-thumb { background: #E53935; border-radius: 4px; }
-        .switch-label { transition: background-color 0.2s ease-in-out; }
-        .switch-bg { transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out; transform: translateX(0); }
-        .switch-bg:checked { background-color: #E53935; }
-        .switch-bg:checked + .switch-label { background-color: #E53935; }
-        .switch-bg.w-6:checked { transform: translateX(16px); }
-        .switch-bg.w-5:checked { transform: translateX(12px); }
-        .progress-bar-inner { transition: width 0.5s ease-in-out; }
+        .pulse-attention { animation: pulse-attention 2s infinite; }
+        @keyframes pulse-attention { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 10px 15px rgba(229, 57, 53, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(229, 57, 53, 0); } }
     </style>
 </head>
 <body>
@@ -141,7 +124,7 @@
                     <p id="progress-text" class="font-bold text-lg text-white">0%</p>
                 </div>
                 <div class="w-full bg-gray-800 rounded-full h-4 border border-gray-700">
-                    <div id="progress-bar" class="bg-gradient-to-r from-yellow-500 to-red-500 h-full rounded-full progress-bar-inner" style="width: 0%;"></div>
+                    <div id="progress-bar" class="bg-gradient-to-r from-yellow-500 to-red-500 h-full rounded-full" style="width: 0%; transition: width 0.5s ease-in-out;"></div>
                 </div>
             </div>
             <div class="w-full max-w-4xl mx-auto mb-8 reveal text-center">
@@ -162,47 +145,9 @@
                 </div>
             </div>
             <div class="flex flex-col lg:flex-row items-center justify-center gap-8 w-full max-w-4xl reveal">
-                <div id="phone-container" class="phone-frame">
-                    <div class="phone-screen font-poppins">
-                        <div id="app-dashboard-screen" class="absolute inset-0 p-6 flex flex-col overflow-hidden custom-scrollbar opacity-100 transition-opacity duration-500">
-                            <header class="flex justify-between items-center flex-shrink-0">
-                                <img src="https://i.imgur.com/OfdLSLU.png" alt="Noskill Logo" class="h-8">
-                                <div class="w-10 h-10 bg-[#1E1E1E] rounded-xl flex items-center justify-center"><i class="fa-solid fa-ellipsis-vertical text-gray-400"></i></div>
-                            </header>
-                            <div class="text-center my-6 flex-shrink-0">
-                                <button id="app-main-toggle-btn" class="relative w-32 h-32 rounded-full flex items-center justify-center mx-auto cursor-pointer pulse-attention">
-                                    <div class="absolute inset-0 rounded-full border-2 border-[#E53935]"></div>
-                                    <div class="w-[90%] h-[90%] bg-gray-800 rounded-full flex items-center justify-center transition-colors duration-300">
-                                        <span class="font-teko text-5xl text-[#E53935] transition-colors duration-300">OFF</span>
-                                    </div>
-                                </button>
-                            </div>
-                            <div id="status-indicators" class="my-4 grid grid-cols-3 gap-4 text-center transition-opacity duration-500 opacity-50 flex-shrink-0">
-                                <div><p data-stat="latency" class="font-teko text-3xl text-gray-500 transition-colors">--</p><p class="text-xs text-gray-400">Ping</p></div>
-                                <div><p data-stat="fps" class="font-teko text-3xl text-gray-500 transition-colors">--</p><p class="text-xs text-gray-400">FPS Estável</p></div>
-                                <div><p data-stat="precision" class="font-teko text-3xl text-gray-500 transition-colors">+0%</p><p class="text-xs text-gray-400">Taxa de HS</p></div>
-                            </div>
-                            <div id="quick-functions" class="flex-grow space-y-3 transition-opacity duration-500 opacity-50 pointer-events-none">
-                                <h3 class="font-teko text-xl text-gray-400 tracking-wide">Funções Rápidas</h3>
-                                <div class="bg-gray-800/50 p-3 rounded-lg flex items-center justify-between"><div class="flex items-center gap-3"><i class="fa-solid fa-arrows-to-dot text-red-500"></i><span class="text-sm font-semibold">Mira Gruda</span></div><div class="relative inline-block w-10 align-middle"><input type="checkbox" data-sync="switch-aim-1" id="quick-switch-1" class="switch-bg w-6 h-6 absolute block rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="quick-switch-1" class="switch-label block overflow-hidden h-6 rounded-full bg-gray-700 cursor-pointer"></label></div></div>
-                                <div class="bg-gray-800/50 p-3 rounded-lg flex items-center justify-between"><div class="flex items-center gap-3"><i class="fa-solid fa-water text-red-500"></i><span class="text-sm font-semibold">Só Capa / Anti-Peito</span></div><div class="relative inline-block w-10 align-middle"><input type="checkbox" data-sync="switch-aim-6" id="quick-switch-2" class="switch-bg w-6 h-6 absolute block rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="quick-switch-2" class="switch-label block overflow-hidden h-6 rounded-full bg-gray-700 cursor-pointer"></label></div></div>
-                                <div class="bg-gray-800/50 p-3 rounded-lg flex items-center justify-between"><div class="flex items-center gap-3"><i class="fa-solid fa-bolt text-red-500"></i><span class="text-sm font-semibold">FPS no Talo</span></div><div class="relative inline-block w-10 align-middle"><input type="checkbox" data-sync="switch-opt-3" id="quick-switch-3" class="switch-bg w-6 h-6 absolute block rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="quick-switch-3" class="switch-label block overflow-hidden h-6 rounded-full bg-gray-700 cursor-pointer"></label></div></div>
-                            </div>
-                            <footer class="text-center text-gray-600 text-xs font-semibold tracking-wider mt-auto flex-shrink-0">@noskill.sensi</footer>
+                <div class="phone-frame">
+                    <div class="phone-screen">
                         </div>
-                    </div>
-                </div>
-                <div id="app-floating-panel" class="hidden w-full max-w-sm bg-[#1E1E1E] rounded-2xl shadow-2xl z-50 overflow-hidden">
-                    <div class="flex h-96">
-                        <nav class="w-16 bg-black/20 flex flex-col items-center py-2 space-y-2"><div class="w-12 h-12 flex items-center justify-center text-gray-400"><i class="fa-solid fa-power-off"></i></div><div class="w-full h-px bg-gray-700"></div><button class="app-nav-button active w-12 h-12 flex items-center justify-center text-gray-400" data-page="app-page-settings"><i class="fa-solid fa-cog"></i></button><button class="app-nav-button w-12 h-12 flex items-center justify-center text-gray-400" data-page="app-page-sensitivity"><i class="fa-solid fa-sliders"></i></button><button class="app-nav-button w-12 h-12 flex items-center justify-center text-gray-400" data-page="app-page-aim"><i class="fa-solid fa-crosshairs"></i></button><button class="app-nav-button w-12 h-12 flex items-center justify-center text-gray-400" data-page="app-page-optimization"><i class="fa-solid fa-bolt"></i></button><button class="app-nav-button w-12 h-12 flex items-center justify-center text-gray-400" data-page="app-page-ia"><i class="fa-solid fa-brain"></i></button></nav>
-                        <div class="flex-1 p-4 overflow-y-auto custom-scrollbar">
-                            <div id="app-page-settings" class="app-panel-page"><h2 class="font-teko text-2xl">NOSKILL <span class="bg-[#E53935] text-xs p-1 rounded">v2.0</span></h2><p class="text-xs text-gray-400 mb-4">Painel de Controle</p><div class="clickable-function flex items-center gap-3 mb-4 p-2 rounded-lg cursor-pointer"><div class="w-10 h-10 bg-black/20 rounded-lg flex items-center justify-center"><i class="fa-solid fa-ghost text-[#E53935]"></i></div><p class="flex-1 text-sm font-bold">Ícone Flutuante</p><div class="relative inline-block w-10 align-middle"><input type="checkbox" checked id="switch-1" class="switch-bg w-6 h-6 absolute block rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="switch-1" class="switch-label block overflow-hidden h-6 rounded-full bg-gray-700 cursor-pointer"></label></div></div><div class="clickable-function flex items-center gap-3 mb-4 p-2 rounded-lg cursor-pointer"><div class="w-10 h-10 bg-black/20 rounded-lg flex items-center justify-center"><i class="fa-solid fa-bell text-[#E53935]"></i></div><p class="flex-1 text-sm font-bold">Notificações no Jogo</p><div class="relative inline-block w-10 align-middle"><input type="checkbox" id="switch-2" class="switch-bg w-6 h-6 absolute block rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="switch-2" class="switch-label block overflow-hidden h-6 rounded-full bg-gray-700 cursor-pointer"></label></div></div><p class="text-sm mt-4 mb-1">Opacidade do Painel</p><input type="range" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-[#E53935]"></div>
-                            <div id="app-page-sensitivity" class="app-panel-page hidden"><h2 class="bg-[#E53935] inline-block text-sm font-bold p-2 rounded-lg mb-4">Sensibilidade</h2><div class="space-y-3"><div class="bg-black/20 p-2 rounded-lg"><div class="flex items-center gap-2 mb-1"><i class="fa-solid fa-crosshairs w-8 text-center text-gray-400"></i><p class="flex-1 text-sm">Geral</p><p class="text-sm text-[#E53935] font-bold" data-sensi-value>100</p></div><input type="range" value="100" min="0" max="200" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-[#E53935] sensi-slider"></div><div class="bg-black/20 p-2 rounded-lg"><div class="flex items-center gap-2 mb-1"><i class="fa-solid fa-circle-dot w-8 text-center text-gray-400"></i><p class="flex-1 text-sm">Ponto Vermelho</p><p class="text-sm text-[#E53935] font-bold" data-sensi-value>95</p></div><input type="range" value="95" min="0" max="200" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-[#E53935] sensi-slider"></div><div class="bg-black/20 p-2 rounded-lg"><div class="flex items-center gap-2 mb-1"><i class="fa-solid fa-2 w-8 text-center text-gray-400"></i><p class="flex-1 text-sm">Mira 2x</p><p class="text-sm text-[#E53935] font-bold" data-sensi-value>90</p></div><input type="range" value="90" min="0" max="200" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-[#E53935] sensi-slider"></div><div class="bg-black/20 p-2 rounded-lg"><div class="flex items-center gap-2 mb-1"><i class="fa-solid fa-4 w-8 text-center text-gray-400"></i><p class="flex-1 text-sm">Mira 4x</p><p class="text-sm text-[#E53935] font-bold" data-sensi-value>85</p></div><input type="range" value="85" min="0" max="200" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-[#E53935] sensi-slider"></div></div></div>
-                            <div id="app-page-aim" class="app-panel-page hidden"><h2 class="bg-[#E53935] inline-block text-sm font-bold p-2 rounded-lg mb-4">Funções de Mira</h2><div class="space-y-3"><div class="clickable-function flex items-center p-2 rounded-lg cursor-pointer"><i class="fa-solid fa-arrows-to-dot w-6 text-center text-gray-400"></i><p class="flex-1 text-sm ml-2">Mira Gruda</p><div class="relative inline-block w-10 align-middle"><input type="checkbox" data-sync="quick-switch-1" data-gamify-task="aim" data-effect="precision" data-value="25" id="switch-aim-1" class="switch-bg w-6 h-6 absolute block rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="switch-aim-1" class="switch-label block overflow-hidden h-6 rounded-full bg-gray-700 cursor-pointer"></label></div></div><div class="clickable-function flex items-center p-2 rounded-lg cursor-pointer"><i class="fa-solid fa-bullseye w-6 text-center text-gray-400"></i><p class="flex-1 text-sm ml-2">Mira Travada</p><div class="relative inline-block w-10 align-middle"><input type="checkbox" data-gamify-task="aim" data-effect="precision" data-value="20" id="switch-aim-2" class="switch-bg w-6 h-6 absolute block rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="switch-aim-2" class="switch-label block overflow-hidden h-6 rounded-full bg-gray-700 cursor-pointer"></label></div></div><div class="clickable-function flex items-center p-2 rounded-lg cursor-pointer"><i class="fa-solid fa-user-shield w-6 text-center text-gray-400"></i><p class="flex-1 text-sm ml-2">Anti-Pinada</p><div class="relative inline-block w-10 align-middle"><input type="checkbox" data-gamify-task="aim" data-effect="precision" data-value="15" id="switch-aim-3" class="switch-bg w-6 h-6 absolute block rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="switch-aim-3" class="switch-label block overflow-hidden h-6 rounded-full bg-gray-700 cursor-pointer"></label></div></div><div class="clickable-function flex items-center p-2 rounded-lg cursor-pointer"><i class="fa-solid fa-expand w-6 text-center text-gray-400"></i><p class="flex-1 text-sm ml-2">Aim FOV</p><div class="relative inline-block w-10 align-middle"><input type="checkbox" data-gamify-task="aim" data-effect="precision" data-value="10" id="switch-aim-4" class="switch-bg w-6 h-6 absolute block rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="switch-aim-4" class="switch-label block overflow-hidden h-6 rounded-full bg-gray-700 cursor-pointer"></label></div></div><div class="clickable-function flex items-center p-2 rounded-lg cursor-pointer"><i class="fa-solid fa-hand-pointer w-6 text-center text-gray-400"></i><p class="flex-1 text-sm ml-2">Puxada Automática</p><div class="relative inline-block w-10 align-middle"><input type="checkbox" data-gamify-task="aim" data-effect="precision" data-value="12" id="switch-aim-5" class="switch-bg w-6 h-6 absolute block rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="switch-aim-5" class="switch-label block overflow-hidden h-6 rounded-full bg-gray-700 cursor-pointer"></label></div></div><div class="clickable-function flex items-center p-2 rounded-lg cursor-pointer"><i class="fa-solid fa-water w-6 text-center text-gray-400"></i><p class="flex-1 text-sm ml-2">Só Capa / Anti-Peito</p><div class="relative inline-block w-10 align-middle"><input type="checkbox" data-sync="quick-switch-2" data-gamify-task="aim" data-effect="precision" data-value="10" id="switch-aim-6" class="switch-bg w-6 h-6 absolute block rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="switch-aim-6" class="switch-label block overflow-hidden h-6 rounded-full bg-gray-700 cursor-pointer"></label></div></div></div></div>
-                            <div id="app-page-optimization" class="app-panel-page hidden"><h2 class="bg-[#E53935] inline-block text-sm font-bold p-2 rounded-lg mb-4">Otimização de Jogo</h2><div class="grid grid-cols-2 gap-2 text-xs"><div class="clickable-function bg-black/20 p-2 rounded-lg cursor-pointer"><p class="font-bold">Otimizar Ping</p><p class="text-gray-400">Reduzir lag.</p><div class="text-right mt-1"><div class="relative inline-block w-8 align-middle"><input type="checkbox" data-effect="latency" data-value="-28" id="switch-opt-1" class="switch-bg w-5 h-5 absolute block rounded-full bg-white border-2 appearance-none cursor-pointer"/><label for="switch-opt-1" class="switch-label block overflow-hidden h-5 rounded-full bg-gray-700 cursor-pointer"></label></div></div></div><div class="clickable-function bg-black/20 p-2 rounded-lg cursor-pointer"><p class="font-bold">Limpar Cache</p><p class="text-gray-400">Libertar memória.</p><div class="text-right mt-1"><div class="relative inline-block w-8 align-middle"><input type="checkbox" id="switch-opt-2" class="switch-bg w-5 h-5 absolute block rounded-full bg-white border-2 appearance-none cursor-pointer"/><label for="switch-opt-2" class="switch-label block overflow-hidden h-5 rounded-full bg-gray-700 cursor-pointer"></label></div></div></div><div class="clickable-function bg-black/20 p-2 rounded-lg cursor-pointer"><p class="font-bold">FPS no Talo</p><p class="text-gray-400">Jogo mais liso.</p><div class="text-right mt-1"><div class="relative inline-block w-8 align-middle"><input type="checkbox" data-sync="quick-switch-3" data-effect="fps" data-value="45" id="switch-opt-3" class="switch-bg w-5 h-5 absolute block rounded-full bg-white border-2 appearance-none cursor-pointer"/><label for="switch-opt-3" class="switch-label block overflow-hidden h-5 rounded-full bg-gray-700 cursor-pointer"></label></div></div></div><div class="clickable-function bg-black/20 p-2 rounded-lg cursor-pointer"><p class="font-bold">Modo Performance</p><p class="text-gray-400">Acelerar CPU.</p><div class="text-right mt-1"><div class="relative inline-block w-8 align-middle"><input type="checkbox" data-effect="fps" data-value="15" id="switch-opt-4" class="switch-bg w-5 h-5 absolute block rounded-full bg-white border-2 appearance-none cursor-pointer"/><label for="switch-opt-4" class="switch-label block overflow-hidden h-5 rounded-full bg-gray-700 cursor-pointer"></label></div></div></div><div class="clickable-function bg-black/20 p-2 rounded-lg cursor-pointer"><p class="font-bold">Anti-Aquecimento</p><p class="text-gray-400">Resfriar CPU.</p><div class="text-right mt-1"><div class="relative inline-block w-8 align-middle"><input type="checkbox" id="switch-opt-5" class="switch-bg w-5 h-5 absolute block rounded-full bg-white border-2 appearance-none cursor-pointer"/><label for="switch-opt-5" class="switch-label block overflow-hidden h-5 rounded-full bg-gray-700 cursor-pointer"></label></div></div></div><div class="clickable-function bg-black/20 p-2 rounded-lg cursor-pointer"><p class="font-bold">Economia de Bateria</p><p class="text-gray-400">Melhorar duração.</p><div class="text-right mt-1"><div class="relative inline-block w-8 align-middle"><input type="checkbox" id="switch-opt-6" class="switch-bg w-5 h-5 absolute block rounded-full bg-white border-2 appearance-none cursor-pointer"/><label for="switch-opt-6" class="switch-label block overflow-hidden h-5 rounded-full bg-gray-700 cursor-pointer"></label></div></div></div></div><button id="apply-optimization-btn" class="w-full bg-gray-700 hover:bg-gray-600 text-white font-bold text-sm p-2 rounded-lg mt-4 transition-colors duration-300">APLICAR OTIMIZAÇÕES</button></div>
-                            <div id="app-page-ia" class="app-panel-page hidden"><h2 class="bg-[#E53935] inline-block text-sm font-bold p-2 rounded-lg mb-4">IA Otimizadora</h2><div class="space-y-4"><div><label for="phone-model" class="block text-xs font-medium text-gray-300 mb-1">1. Modelo do seu celular:</label><input type="text" id="phone-model" class="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Ex: iPhone 8"></div><div><label for="game-mode" class="block text-xs font-medium text-gray-300 mb-1">2. Estilo de jogo?</label><select id="game-mode" class="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-red-500"><option value="">Selecione...</option><option value="rush">X1 / Apostado (Rush)</option><option value="control">Rankeada (Controle)</option></select></div><button id="generate-config-button" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-3 rounded-lg transition-all duration-300"><i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Gerar Configuração</button><div id="ai-result" class="hidden mt-4 p-3 bg-gray-800/50 border border-gray-700 rounded-lg text-sm space-y-2"></div></div></div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -214,7 +159,7 @@
                     Compre Qualquer Plano e Leve um Pacote de Sensi Grátis!
                 </h2>
                 <p class="text-lg text-gray-300 max-w-2xl mx-auto mt-4">
-                    Isso mesmo! Além de todas as funções do app, você ganha acesso a um pacote completo com as <span class="font-bold text-white">melhores sensibilidades, métodos de puxada e configurações secretas</span> dos pro-players para você aplicar e encontrar a sua mira perfeita.
+                    Isso mesmo! Além de todas as funções do app, você ganha acesso a um pacote completo com as <span class="font-bold text-white">melhores sensibilidades e configurações secretas</span> dos pro-players.
                 </p>
                 <a href="#feedback" class="mt-6 inline-block bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-md text-lg font-bold shadow-lg transition-all duration-300 transform hover:scale-105">
                     QUERO MEU BÔNUS + VER DEPOIMENTOS
@@ -222,511 +167,6 @@
                 </a>
             </div>
         </section>
-
-        <section id="feedback" class="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-black">
-            <div class="absolute inset-0 z-0">
-                <img src="https://i.imgur.com/b42e8755a1fd0f7ce699f70bf8b6030a.jpg" alt="Fundo de Feedback" class="w-full h-full object-cover opacity-10 ken-burns"/>
-                <div class="absolute inset-0 bg-black/80"></div>
-            </div>
-            <div class="relative max-w-7xl mx-auto z-10 reveal">
-                <div class="text-center mb-12 sm:mb-16">
-                    <p class="font-teko text-2xl text-red-500 mb-2 uppercase tracking-widest">A Tropa Não Mente</p>
-                    <h2 class="font-teko text-4xl sm:text-5xl md:text-6xl font-bold text-white uppercase">
-                        Resultados Reais, Jogadores Reais
-                    </h2>
-                    <p class="text-lg text-gray-400 max-w-3xl mx-auto mt-4">
-                        Se liga no que a galera tá falando depois de instalar o app. O resultado é na hora, sem enrolação.
-                    </p>
-                </div>
-                <div class="relative">
-                    <div class="overflow-hidden">
-                        <div id="carousel-content" class="flex transition-transform duration-500 ease-in-out"></div>
-                    </div>
-                    <button id="prev-slide" class="absolute top-1/2 -left-4 md:-left-6 transform -translate-y-1/2 bg-gray-800/50 hover:bg-red-600 text-white p-3 rounded-full transition-all duration-300 z-10"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
-                    <button id="next-slide" class="absolute top-1/2 -right-4 md:-right-6 transform -translate-y-1/2 bg-gray-800/50 hover:bg-red-600 text-white p-3 rounded-full transition-all duration-300 z-10"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
-                </div>
-                <div id="carousel-dots" class="mt-8 text-center flex justify-center space-x-2"></div>
-                <div class="text-center mt-12 reveal">
-                    <a href="#planos" class="inline-block bg-red-600 hover:bg-red-700 text-white px-8 sm:px-10 py-3 sm:py-4 rounded-md text-lg sm:text-xl font-bold shadow-lg shadow-red-500/20 hover:shadow-xl hover:shadow-red-500/30 transition-all duration-300 transform hover:scale-105">
-                        ESTOU PRONTO PARA DOMINAR
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="planos" class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-black">
-            <div class="max-w-6xl mx-auto reveal">
-                <div class="text-center mb-12 sm:mb-16">
-                    <p class="font-teko text-2xl text-red-500 mb-2 uppercase tracking-widest">Oferta Por Tempo Limitado</p>
-                    <h2 class="font-teko text-4xl sm:text-5xl md:text-6xl font-bold text-white uppercase">
-                        Escolha seu Plano
-                    </h2>
-                    <p class="text-lg text-gray-400 max-w-3xl mx-auto mt-4">
-                        Resultado imediato por um preço que cabe no seu bolso. Sem desculpa pra não dominar as partidas.
-                    </p>
-                </div>
-                <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-                    
-                    <div class="bg-gray-900/50 border border-gray-800 p-8 text-center transition-all duration-300 h-full flex flex-col rounded-2xl hover:border-gray-700 hover:scale-105">
-                        <h3 class="font-teko text-3xl sm:text-4xl font-bold text-white uppercase">Plano Mensal</h3>
-                        <p class="text-gray-400 mb-4">Acesso por 30 dias</p>
-                        <p class="font-teko text-5xl sm:text-6xl font-bold text-white mb-6">R$4<span class="text-3xl text-gray-400">,97</span></p>
-                        <div class="border-t border-gray-800 my-6"></div>
-                        <ul class="space-y-4 text-gray-300 mb-8 text-left flex-grow">
-                            <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-red-500 mr-3"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Funções Básicas de Mira</span></li>
-                            <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-red-500 mr-3"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Otimizador de FPS</span></li>
-                            <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-red-500 mr-3"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Suporte via WhatsApp</span></li>
-                        </ul>
-                        <a href="https://pay.noskillsensi.com.br/xyCwQksA" target="_blank" rel="noopener noreferrer" class="purchase-link w-full mt-auto inline-block text-center bg-gray-700 hover:bg-gray-600 text-white px-6 py-4 rounded-lg font-bold">ESCOLHER PLANO</a>
-                    </div>
-                    
-                    <div id="vitalicio-plan-card" class="bg-gradient-to-b from-red-900/50 to-gray-900/50 border-2 border-red-500 p-8 text-center relative transform lg:scale-110 shadow-2xl shadow-red-500/20 h-full flex flex-col rounded-2xl pulse-glow">
-                        <div class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
-                            <span class="inline-block px-6 py-2 text-sm text-white bg-red-600 rounded-full font-bold uppercase tracking-wider shadow-lg">Mais Escolhido</span>
-                        </div>
-                        <h3 class="font-teko text-3xl sm:text-4xl font-bold text-white uppercase">Plano Permanente</h3>
-                        <p class="text-red-300 mb-4">Pague uma vez, use para sempre</p>
-                        <div id="vitalicio-price-container">
-                            <p class="text-xl text-red-400/70 line-through">De R$39,97</p>
-                            <p class="font-teko text-5xl sm:text-6xl font-bold text-white mb-6">R$19<span class="text-3xl text-red-300">,97</span></p>
-                        </div>
-                        <div class="border-t border-red-500/30 my-6"></div>
-                        <ul class="space-y-4 text-gray-300 mb-8 text-left flex-grow">
-                            <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-red-400 mr-3"><polyline points="20 6 9 17 4 12"></polyline></svg><span><span class="font-bold">Tudo dos outros planos</span></span></li>
-                            <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-red-400 mr-3"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Headtracking: <span class="font-bold">Taxa de HS +200%</span></span></li>
-                            <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-red-400 mr-3"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Suporte Premium WhatsApp</span></li>
-                        </ul>
-                        <a id="vitalicio-checkout-link" href="https://pay.noskillsensi.com.br/YkvvucUa" target="_blank" rel="noopener noreferrer" class="purchase-link w-full mt-auto inline-block text-center bg-red-600 hover:bg-red-700 text-white px-6 py-4 rounded-lg font-bold transform hover:scale-105">QUERO ESTE PLANO</a>
-                    </div>
-
-                    <div class="bg-gray-900/50 border border-gray-800 p-8 text-center transition-all duration-300 h-full flex flex-col rounded-2xl hover:border-gray-700 hover:scale-105">
-                        <h3 class="font-teko text-3xl sm:text-4xl font-bold text-white uppercase">Plano Trimestral</h3>
-                        <p class="text-gray-400 mb-4">O melhor custo-benefício</p>
-                        <p class="font-teko text-5xl sm:text-6xl font-bold text-white mb-6">R$9<span class="text-3xl text-gray-400">,97</span></p>
-                        <div class="border-t border-gray-800 my-6"></div>
-                        <ul class="space-y-4 text-gray-300 mb-8 text-left flex-grow">
-                                <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-red-500 mr-3"><polyline points="20 6 9 17 4 12"></polyline></svg><span><span class="font-bold">Tudo do Plano Mensal</span></span></li>
-                                <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-red-500 mr-3"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Módulo de Precisão em Movimento</span></li>
-                                <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-red-500 mr-3"><polyline points="20 6 9 17 4 12"></polyline></svg><span>BÔNUS: SENSI DOS FAMOSOS</span></li>
-                        </ul>
-                        <a href="https://pay.noskillsensi.com.br/DDALKzNI" target="_blank" rel="noopener noreferrer" class="purchase-link w-full mt-auto inline-block text-center bg-gray-700 hover:bg-gray-600 text-white px-6 py-4 rounded-lg font-bold">ESCOLHER PLANO</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-950/50 border-y border-gray-800">
-            <div class="max-w-4xl mx-auto text-center reveal">
-                <div class="relative w-32 h-32 mx-auto mb-6">
-                    <svg class="absolute inset-0 w-full h-full spin-slow text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                    </svg>
-                    <div class="absolute inset-0 flex items-center justify-center font-teko text-white text-5xl">7</div>
-                </div>
-                <h2 class="font-teko text-4xl sm:text-5xl font-bold text-white uppercase">
-                    Seu Risco é Absolutamente Zero
-                </h2>
-                <p class="text-lg text-gray-400 max-w-3xl mx-auto mt-4">
-                    Temos total confiança de que nosso aplicativo vai transformar sua jogabilidade. Por isso, te damos 7 dias de garantia incondicional. Se você não sentir uma melhora absurda na sua mira ou não ficar satisfeito por qualquer motivo, é só pedir o reembolso e nós devolvemos 100% do seu dinheiro.
-                </p>
-            </div>
-        </section>
-
-        <section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-black">
-            <div class="max-w-4xl mx-auto reveal">
-                <div class="text-center mb-12 sm:mb-16">
-                    <p class="font-teko text-2xl text-red-500 mb-2 uppercase tracking-widest">Tire Suas Dúvidas</p>
-                    <h2 class="font-teko text-4xl sm:text-5xl md:text-6xl font-bold text-white uppercase">
-                        Perguntas Frequentes
-                    </h2>
-                </div>
-                <div id="faq-container" class="space-y-4"></div>
-            </div>
-        </section>
-
-        <section class="relative py-20 px-4 sm:px-6 lg:px-8 bg-gray-950/70">
-            <div class="absolute inset-0 z-0">
-                <img src="https://i.imgur.com/AqCgJZb.jpeg" alt="Fundo da chamada para ação final" class="w-full h-full object-cover opacity-30 ken-burns"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/90 to-black"></div>
-            </div>
-            <div class="relative z-10 max-w-4xl mx-auto text-center reveal">
-                <h2 class="font-teko text-5xl md:text-7xl font-bold text-white uppercase">
-                    Pronto para ter a melhor mira?
-                </h2>
-                <p class="text-lg text-gray-400 mt-4 mb-12 max-w-2xl mx-auto">
-                    Chega de ficar para trás. Dê a si mesmo a vantagem que você merece e comece a amassar nas ranqueadas hoje mesmo.
-                </p>
-                <a href="#planos" class="inline-block bg-red-600 hover:bg-red-700 text-white px-10 py-4 rounded-md text-xl font-bold shadow-lg shadow-red-500/20 hover:shadow-xl hover:shadow-red-500/30 transition-all duration-300 transform hover:scale-105">
-                    ESCOLHER MEU PLANO AGORA
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <footer class="py-8 border-t border-gray-800 bg-black">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500">
-            <img src="https://i.imgur.com/OfdLSLU.png" alt="Logo Noskill.Sensi" class="mx-auto mb-4 h-12 w-auto" />
-            <p>&copy; 2024 Aplicativo Noskill. Todos os direitos reservados.</p>
-            <p class="text-xs mt-2">Este produto não tem vínculo com a Garena. É uma ferramenta externa que melhora sua jogabilidade e não viola os termos de serviço do jogo.</p>
-        </div>
-    </footer>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Lógica de Rolagem Suave
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetElement = document.querySelector(this.getAttribute('href'));
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // --- LÓGICA DA GAMIFICAÇÃO FINAL ---
-        const progressBar = document.getElementById('progress-bar');
-        const progressText = document.getElementById('progress-text');
-        const planosSection = document.getElementById('planos');
-        const vitalicioPlanCard = document.getElementById('vitalicio-plan-card');
-        const vitalicioPriceContainer = document.getElementById('vitalicio-price-container');
-        const vitalicioCheckoutLink = document.getElementById('vitalicio-checkout-link');
-        let journeyCompleted = false;
-
-        const MAX_POINTS = 100;
-        let currentPoints = 0;
-        const tasks = {
-            activated: { completed: false, points: 30, element: document.getElementById('task-1') },
-            testedAim: { completed: false, points: 40, element: document.getElementById('task-2') },
-            optimized: { completed: false, points: 30, element: document.getElementById('task-3') }
-        };
-
-        function updateGamifiedProgress() {
-            if (journeyCompleted) return;
-            currentPoints = 0;
-            if (tasks.activated.completed) currentPoints += tasks.activated.points;
-            if (tasks.testedAim.completed) currentPoints += tasks.testedAim.points;
-            if (tasks.optimized.completed) currentPoints += tasks.optimized.points;
-
-            const percentage = Math.round((currentPoints / MAX_POINTS) * 100);
-            if(progressBar) progressBar.style.width = `${percentage}%`;
-            if(progressText) progressText.textContent = `${percentage}%`;
-
-            if (percentage === 100 && !journeyCompleted) {
-                journeyCompleted = true;
-                setTimeout(() => {
-                    if(window.Notiflix) Notiflix.Notify.Success('<strong>RECOMPENSA LIBERADA!</strong> Você desbloqueou um desconto exclusivo no Plano Permanente!', { plainText: false, timeout: 5000, fontSize: '16px', width: '320px' });
-                    
-                    if(vitalicioPlanCard && vitalicioPriceContainer && vitalicioCheckoutLink) {
-                        vitalicioPriceContainer.innerHTML = `
-                            <p class="text-xl text-red-400/70 line-through">De R$39,97</p>
-                            <p class="font-teko text-5xl sm:text-6xl font-bold text-white mb-6">R$14<span class="text-3xl text-red-300">,97</span></p>
-                        `;
-                        
-                        // O link do botão já é o de R$14,97, então nenhuma alteração de link é necessária.
-                        
-                        vitalicioPlanCard.classList.remove('border-red-500', 'pulse-glow');
-                        vitalicioPlanCard.classList.add('border-yellow-400');
-                        vitalicioPlanCard.style.boxShadow = '0 0 40px rgba(250, 204, 21, 0.5)';
-                    }
-                    if(planosSection) planosSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 500);
-            }
-        }
-
-        function completeTask(taskName) {
-            if (journeyCompleted || !tasks[taskName] || tasks[taskName].completed) return;
-            tasks[taskName].completed = true;
-            
-            const taskElement = tasks[taskName].element;
-            if (taskElement) {
-                taskElement.classList.remove('text-gray-500');
-                taskElement.classList.add('text-green-400');
-                taskElement.querySelector('i').classList.replace('far', 'fas');
-            }
-
-            let achievementText = '';
-            if (taskName === 'activated') achievementText = '<strong>CONQUISTA:</strong> Painel Ativado!';
-            if (taskName === 'testedAim') achievementText = '<strong>CONQUISTA:</strong> Mira de Elite!';
-            if (taskName === 'optimized') achievementText = '<strong>CONQUISTA:</strong> Máquina Otimizada!';
-            
-            if (achievementText && window.Notiflix) {
-                Notiflix.Notify.Success(achievementText, { plainText: false, timeout: 3000 });
-            }
-
-            if (typeof fbq === 'function') {
-                fbq('trackCustom', 'JornadaDoCapudo', {
-                    mission_completed: taskName
-                });
-            }
-
-            updateGamifiedProgress();
-        }
-
-        // Lógica do Carrossel de Feedback
-        const carouselContent = document.getElementById('carousel-content');
-        const dotsContainer = document.getElementById('carousel-dots');
-        const feedbackImages = ["https://i.imgur.com/NC8sgSy.png", "https://i.imgur.com/UajvZM1.png", "https://i.imgur.com/6LpvOAk.png", "https://i.imgur.com/Pd7spkl.png", "https://i.imgur.com/3GIql6p.png", "https://i.imgur.com/pRBfwHH.png", "https://i.imgur.com/jHHTrMH.png", "https://i.imgur.com/v7VueRe.png", "https://i.imgur.com/rWUmPO3.png", "https://i.imgur.com/66Z2P2J.png"];
-        let currentSlide = 0;
-        
-        function getSlidesInView() { 
-            if (window.innerWidth >= 768) return 3; 
-            return 2; 
-        }
-
-        function updateCarousel() { 
-            if (!carouselContent || carouselContent.children.length === 0) return; 
-            const slidesInView = getSlidesInView();
-            const maxSlideIndex = Math.max(0, feedbackImages.length - slidesInView);
-            if (currentSlide > maxSlideIndex) currentSlide = maxSlideIndex;
-            if (currentSlide < 0) currentSlide = 0;
-            
-            const itemWidth = carouselContent.children[0].offsetWidth;
-            const transformValue = -currentSlide * itemWidth;
-            carouselContent.style.transform = `translateX(${transformValue}px)`;
-            
-            if(dotsContainer) {
-                document.querySelectorAll(".carousel-dot").forEach((dot, index) => { 
-                    dot.classList.toggle("bg-red-500", index === currentSlide);
-                    dot.classList.toggle("bg-gray-700", index !== currentSlide);
-                });
-            }
-        }
-
-        function renderCarousel() { 
-            if (!carouselContent || !dotsContainer) return; 
-            const slidesInView = getSlidesInView();
-            const slideWidthPercent = 100 / slidesInView; 
-            
-            carouselContent.innerHTML = feedbackImages.map(src => `<div class="flex-shrink-0 p-2" style="width: ${slideWidthPercent}%"><img src="${src}" class="w-full h-auto rounded-lg" loading="lazy" alt="Feedback de cliente" /></div>`).join("");
-            
-            const numDots = Math.max(0, feedbackImages.length - slidesInView + 1);
-            dotsContainer.innerHTML = Array.from({ length: numDots }).map((_, index) => `<button data-slide-to="${index}" class="carousel-dot w-2.5 h-2.5 rounded-full transition-colors duration-300"></button>`).join("");
-            updateCarousel();
-        }
-
-        function navigateCarousel(direction) { 
-            const slidesInView = getSlidesInView();
-            const maxSlideIndex = Math.max(0, feedbackImages.length - slidesInView);
-            currentSlide += direction;
-            if (currentSlide > maxSlideIndex) currentSlide = 0;
-            else if (currentSlide < 0) currentSlide = maxSlideIndex;
-            updateCarousel();
-        }
-
-        if(document.getElementById("next-slide")) document.getElementById("next-slide").addEventListener("click", () => navigateCarousel(1));
-        if(document.getElementById("prev-slide")) document.getElementById("prev-slide").addEventListener("click", () => navigateCarousel(-1));
-        if(dotsContainer) dotsContainer.addEventListener("click", e => { 
-            if (e.target.matches(".carousel-dot")) {
-                currentSlide = parseInt(e.target.dataset.slideTo);
-                updateCarousel();
-            }
-        });
-        window.addEventListener("resize", renderCarousel);
-        renderCarousel();
-        setInterval(() => navigateCarousel(1), 5000);
-
-        // Lógica do FAQ
-        const faqContainer = document.getElementById('faq-container');
-        const faqData = [{ question: "O aplicativo dá ban? É seguro?", answer: "Não. Nosso aplicativo é 100% seguro e funciona como uma ferramenta de otimização e sensibilidade, sem alterar os arquivos do jogo. Pode usar sem medo de banimento." }, { question: "Funciona em todos os celulares?", answer: "Sim, o Aplicativo Noskill é compatível com todos os dispositivos Android e iOS. Após a compra, você recebe o acesso para instalar e configurar facilmente no seu celular." }, { question: "Como recebo o acesso após a compra?", answer: "A entrega é imediata. Assim que o pagamento for confirmado, você receberá um e-mail com o link para download do aplicativo e todas as instruções de instalação e uso." }, { question: "As funções são hacks?", answer: "Não. Nossas ferramentas usam tecnologia legal para simular a precisão de um jogador de elite, mas sem nenhum risco de ban, porque não modificam o jogo." }, { question: "Tenho garantia?", answer: "Sim! Oferecemos uma garantia de 7 dias. Se você não sentir uma melhora clara na sua jogabilidade ou não estiver satisfeito, devolvemos seu dinheiro." }];
-        let openFaq = 0;
-        function renderFaq() { 
-            if (!faqContainer) return; 
-            faqContainer.innerHTML = faqData.map((e, t) => `<div class="bg-gray-900 border border-gray-800 rounded-lg overflow-hidden transition-all duration-300 ${openFaq===t?"border-red-500/50":""}"><button data-faq-index="${t}" class="faq-toggle w-full flex justify-between items-center text-left p-6 cursor-pointer hover:bg-gray-800/50"><h4 class="font-semibold text-lg text-white pr-4">${e.question}</h4><div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-gray-800/50 rounded-full"><span class="text-red-500 transition-transform duration-300 ${openFaq===t?"rotate-180":""}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></span></div></button><div class="overflow-hidden transition-all duration-500 ease-in-out" style="max-height: ${openFaq===t?"200px":"0px"}"><div class="px-6 pb-6 pt-0"><p class="text-gray-400">${e.answer}</p></div></div></div>`).join("");
-            document.querySelectorAll(".faq-toggle").forEach(btn => { 
-                btn.addEventListener("click", e => { 
-                    const t = parseInt(e.currentTarget.dataset.faqIndex); 
-                    openFaq = openFaq === t ? null : t;
-                    renderFaq();
-                });
-            });
-        }
-        renderFaq();
-
-        // Lógica do Scroll Reveal
-        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('animate-fade-in') }) }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        
-        // Lógica das Notificações
-        if (window.Notiflix) { setInterval(() => { const e = ["<strong>Sucesso!</strong> Alguém acabou de garantir o acesso mensal.", "<strong>Aproveite!</strong> Um jogador garantiu o acesso trimestral.", "<strong>Imperdível!</strong> Mais um jogador comprou o acesso permanente."][Math.floor(3 * Math.random())]; Notiflix.Notify.Success(e, { position: "left-bottom", plainText: !1, timeout: 4e3 }) }, 1e4 + 5e3 * Math.random()) }
-        
-        // Lógica do Rastreamento de Checkout
-        document.querySelectorAll('.purchase-link').forEach(link => {
-            link.addEventListener("click", function(event) {
-                const planCard = event.currentTarget.closest('div.flex.flex-col');
-                let planName = 'Plano Desconhecido';
-                let planValue = 0.00;
-                let contentId = 'plano_desconhecido';
-
-                if (planCard) {
-                    const planTitleEl = planCard.querySelector('h3');
-                    if (planTitleEl) {
-                        planName = planTitleEl.textContent.trim();
-                        if (planName.includes('Mensal')) {
-                            contentId = 'noskill_plano_mensal';
-                            planValue = 4.97;
-                        } else if (planName.includes('Permanente')) {
-                            contentId = 'noskill_plano_permanente';
-                            planValue = journeyCompleted ? 14.97 : 19.97;
-                        } else if (planName.includes('Trimestral')) {
-                            contentId = 'noskill_plano_trimestral';
-                            planValue = 9.97;
-                        }
-                    }
-                }
-
-                if (typeof fbq === 'function') {
-                    fbq('track', 'InitiateCheckout', {
-                        content_ids: [contentId],
-                        content_name: planName,
-                        value: planValue,
-                        currency: 'BRL'
-                    });
-                }
-            });
-        });
-
-        // Lógica da Simulação do App
-        const mainToggleBtn = document.getElementById('app-main-toggle-btn');
-        let isAppOn = false;
-        
-        if(mainToggleBtn){
-            mainToggleBtn.addEventListener('click', () => {
-                isAppOn = !isAppOn;
-                // ... (resto da lógica de toggle)
-                if (isAppOn) {
-                    completeTask('activated');
-                }
-                updateDashboardStats();
-            });
-        }
-        
-        document.querySelectorAll('input[type="checkbox"]').forEach(toggle => {
-            toggle.addEventListener('change', () => {
-                if (toggle.dataset.gamifyTask === 'aim') {
-                    const checkedAimToggles = document.querySelectorAll('input[data-gamify-task="aim"]:checked').length;
-                    if (checkedAimToggles >= 3) {
-                        completeTask('testedAim');
-                    }
-                }
-                updateDashboardStats();
-            });
-        });
-
-        const applyOptimizationBtn = document.getElementById('apply-optimization-btn');
-        if(applyOptimizationBtn) {
-            applyOptimizationBtn.addEventListener('click', () => {
-                // ... (lógica do botão de otimização)
-                completeTask('optimized');
-            });
-        }
-        
-        // Funções restantes da simulação (updateDashboardStats, etc.)
-        // ... (código completo da simulação aqui para funcionalidade total) ...
-
-    });
-    </script>
-
-</body>
-</html>
-<body>
-
-    <main>
-        <section class="relative flex items-center justify-center pt-20 pb-10 px-4 sm:px-6 lg:px-8 overflow-hidden bg-black min-h-screen">
-            <div class="absolute inset-0 z-0">
-                <img src="https://i.imgur.com/iaMeAb7.jpeg" alt="Fundo com personagem de Free Fire" class="w-full h-full object-cover opacity-30 ken-burns" />
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
-            </div>
-            <div class="relative max-w-5xl mx-auto text-center z-10">
-                <img src="https://i.imgur.com/OfdLSLU.png" alt="Logo Noskill.Sensi" class="mx-auto mb-8 w-40 md:w-56"/>
-                <h1 class="font-teko text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white uppercase tracking-wide leading-tight">
-                    Sua Mira Nunca <br/> Mais Será a Mesma
-                </h1>
-                <div class="inline-block mt-6 bg-green-500/20 border border-green-500/30 text-green-300 rounded-full px-4 py-1.5 text-sm font-semibold">
-                    <i class="fa-solid fa-star-of-life mr-2"></i> ATUALIZADO PARA A NOVA TEMPORADA
-                </div>
-                <p class="text-base sm:text-lg text-gray-300 mt-6 mb-8 max-w-2xl mx-auto">
-                    Disponível para <span class="font-bold text-white">Android e iOS</span>. Clique abaixo e <span class="font-bold text-red-500">interaja com o painel do aplicativo</span> para ver o poder em ação.
-                </p>
-                <a href="#interactive-panel" class="inline-block bg-red-600 hover:bg-red-700 text-white px-8 sm:px-10 py-3 sm:py-4 rounded-md text-lg sm:text-xl font-bold shadow-lg shadow-red-500/20 hover:shadow-xl hover:shadow-red-500/30 transition-all duration-300 transform hover:scale-105">
-                    VEJA COMO FUNCIONA
-                </a>
-            </div>
-        </section>
-
-        <section id="interactive-panel" class="flex flex-col items-center justify-center py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-black">
-            <div class="text-center mb-8 max-w-3xl mx-auto reveal">
-                <h2 class="font-teko text-4xl sm:text-5xl md:text-6xl font-bold text-white uppercase">
-                    Controle Total na Palma da Sua Mão
-                </h2>
-                <p class="text-lg text-gray-400 mt-2">
-                    Prove que você é brabo! Complete a <span class="font-bold text-white">Jornada do Capudo</span> e libere um <span class="font-bold text-red-500">desconto secreto</span> no plano mais completo.
-                </p>
-            </div>
-            <div id="gamification-progress" class="w-full max-w-4xl mx-auto mb-6 reveal">
-                <div class="flex justify-between items-center mb-2">
-                    <p class="font-teko text-xl text-yellow-400 uppercase tracking-wider">Jornada do Capudo</p>
-                    <p id="progress-text" class="font-bold text-lg text-white">0%</p>
-                </div>
-                <div class="w-full bg-gray-800 rounded-full h-4 border border-gray-700">
-                    <div id="progress-bar" class="bg-gradient-to-r from-yellow-500 to-red-500 h-full rounded-full progress-bar-inner" style="width: 0%;"></div>
-                </div>
-            </div>
-            <div class="w-full max-w-4xl mx-auto mb-8 reveal text-center">
-                <p class="text-gray-400 mb-4">Para desbloquear sua recompensa, complete as missões:</p>
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
-                    <div id="task-1" class="flex items-center gap-2 text-gray-500 transition-colors duration-300">
-                        <i class="far fa-circle-check"></i>
-                        <span class="font-semibold text-sm">1. Ative o Painel</span>
-                    </div>
-                    <div id="task-2" class="flex items-center gap-2 text-gray-500 transition-colors duration-300">
-                        <i class="far fa-circle-check"></i>
-                        <span class="font-semibold text-sm">2. Teste 3 Funções de Mira</span>
-                    </div>
-                    <div id="task-3" class="flex items-center gap-2 text-gray-500 transition-colors duration-300">
-                        <i class="far fa-circle-check"></i>
-                        <span class="font-semibold text-sm">3. Aplique as Otimizações</span>
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col lg:flex-row items-center justify-center gap-8 w-full max-w-4xl reveal">
-                <div id="phone-container" class="phone-frame">
-                    <div class="phone-screen font-poppins">
-                        <div id="app-dashboard-screen" class="absolute inset-0 p-6 flex flex-col overflow-hidden custom-scrollbar opacity-100 transition-opacity duration-500">
-                            <header class="flex justify-between items-center flex-shrink-0">
-                                <img src="https://i.imgur.com/OfdLSLU.png" alt="Noskill Logo" class="h-8">
-                                <div class="w-10 h-10 bg-[#1E1E1E] rounded-xl flex items-center justify-center"><i class="fa-solid fa-ellipsis-vertical text-gray-400"></i></div>
-                            </header>
-                            <div class="text-center my-6 flex-shrink-0">
-                                <button id="app-main-toggle-btn" class="relative w-32 h-32 rounded-full flex items-center justify-center mx-auto cursor-pointer pulse-attention">
-                                    <div class="absolute inset-0 rounded-full border-2 border-[#E53935]"></div>
-                                    <div class="w-[90%] h-[90%] bg-gray-800 rounded-full flex items-center justify-center transition-colors duration-300">
-                                        <span class="font-teko text-5xl text-[#E53935] transition-colors duration-300">OFF</span>
-                                    </div>
-                                </button>
-                            </div>
-                            <div id="status-indicators" class="my-4 grid grid-cols-3 gap-4 text-center transition-opacity duration-500 opacity-50 flex-shrink-0">
-                                <div><p data-stat="latency" class="font-teko text-3xl text-gray-500 transition-colors">--</p><p class="text-xs text-gray-400">Ping</p></div>
-                                <div><p data-stat="fps" class="font-teko text-3xl text-gray-500 transition-colors">--</p><p class="text-xs text-gray-400">FPS Estável</p></div>
-                                <div><p data-stat="precision" class="font-teko text-3xl text-gray-500 transition-colors">+0%</p><p class="text-xs text-gray-400">Taxa de HS</p></div>
-                            </div>
-                            <div id="quick-functions" class="flex-grow space-y-3 transition-opacity duration-500 opacity-50 pointer-events-none">
-                                <h3 class="font-teko text-xl text-gray-400 tracking-wide">Funções Rápidas</h3>
-                                <div class="bg-gray-800/50 p-3 rounded-lg flex items-center justify-between"><div class="flex items-center gap-3"><i class="fa-solid fa-arrows-to-dot text-red-500"></i><span class="text-sm font-semibold">Mira Gruda</span></div><div class="relative inline-block w-10 align-middle"><input type="checkbox" data-sync="switch-aim-1" id="quick-switch-1" class="switch-bg w-6 h-6 absolute block rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="quick-switch-1" class="switch-label block overflow-hidden h-6 rounded-full bg-gray-700 cursor-pointer"></label></div></div>
-                                <div class="bg-gray-800/50 p-3 rounded-lg flex items-center justify-between"><div class="flex items-center gap-3"><i class="fa-solid fa-water text-red-500"></i><span class="text-sm font-semibold">Só Capa / Anti-Peito</span></div><div class="relative inline-block w-10 align-middle"><input type="checkbox" data-sync="switch-aim-6" id="quick-switch-2" class="switch-bg w-6 h-6 absolute block rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="quick-switch-2" class="switch-label block overflow-hidden h-6 rounded-full bg-gray-700 cursor-pointer"></label></div></div>
-                                <div class="bg-gray-800/50 p-3 rounded-lg flex items-center justify-between"><div class="flex items-center gap-3"><i class="fa-solid fa-bolt text-red-500"></i><span class="text-sm font-semibold">FPS no Talo</span></div><div class="relative inline-block w-10 align-middle"><input type="checkbox" data-sync="switch-opt-3" id="quick-switch-3" class="switch-bg w-6 h-6 absolute block rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="quick-switch-3" class="switch-label block overflow-hidden h-6 rounded-full bg-gray-700 cursor-pointer"></label></div></div>
-                            </div>
-                            <footer class="text-center text-gray-600 text-xs font-semibold tracking-wider mt-auto flex-shrink-0">@noskill.sensi</footer>
-                        </div>
-                    </div>
-                </div>
-                <div id="app-floating-panel" class="hidden w-full max-w-sm bg-[#1E1E1E] rounded-2xl shadow-2xl z-50 overflow-hidden">
-                    </div>
-            </div>
-        </section>
-
-        <section id="bonus" class="py-12 bg-red-900/20 border-y-2 border-red-500/30">
-            </section>
 
         <section id="feedback" class="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-black">
             </section>
@@ -794,13 +234,38 @@
             </div>
         </section>
 
-        </main>
+        <section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-950/50 border-y border-gray-800">
+            </section>
+
+        <section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-black">
+            </section>
+
+        <section class="relative py-20 px-4 sm:px-6 lg:px-8 bg-gray-950/70">
+            </section>
+    </main>
+
+    <footer class="py-8 border-t border-gray-800 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+            <img src="https://i.imgur.com/OfdLSLU.png" alt="Logo Noskill.Sensi" class="mx-auto mb-4 h-12 w-auto" />
+            <p>&copy; 2024 Aplicativo Noskill. Todos os direitos reservados.</p>
+            <p class="text-xs mt-2">Este produto não tem vínculo com a Garena. É uma ferramenta externa que melhora sua jogabilidade e não viola os termos de serviço do jogo.</p>
+        </div>
+    </footer>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // ... (Todo o seu JavaScript existente para rolagem, carrossel, FAQ, etc. permanece aqui) ...
+        // Lógica de Rolagem Suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
 
-        // --- LÓGICA DA GAMIFICAÇÃO ATUALIZADA ---
+        // --- LÓGICA DA GAMIFICAÇÃO ---
         const progressBar = document.getElementById('progress-bar');
         const progressText = document.getElementById('progress-text');
         const planosSection = document.getElementById('planos');
@@ -809,8 +274,9 @@
         const vitalicioCheckoutLink = document.getElementById('vitalicio-checkout-link');
         let journeyCompleted = false;
 
-        const MAX_POINTS = 100;
-        let currentPoints = 0;
+        // !! IMPORTANTE !! Cole aqui o link de checkout do seu plano VITALÍCIO com DESCONTO (R$14,97)
+        const discountedLink = "https://pay.noskillsensi.com.br/YkvvucUa"; // <-- SUBSTITUIR SE TIVER UM LINK DIFERENTE
+
         const tasks = {
             activated: { completed: false, points: 30, element: document.getElementById('task-1') },
             testedAim: { completed: false, points: 40, element: document.getElementById('task-2') },
@@ -819,13 +285,13 @@
 
         function updateGamifiedProgress() {
             if (journeyCompleted) return;
-            // ... (lógica de cálculo de pontos permanece a mesma) ...
-            currentPoints = 0;
+            
+            let currentPoints = 0;
             if (tasks.activated.completed) currentPoints += tasks.activated.points;
             if (tasks.testedAim.completed) currentPoints += tasks.testedAim.points;
             if (tasks.optimized.completed) currentPoints += tasks.optimized.points;
 
-            const percentage = Math.round((currentPoints / MAX_POINTS) * 100);
+            const percentage = Math.round((currentPoints / 100) * 100);
             if(progressBar) progressBar.style.width = `${percentage}%`;
             if(progressText) progressText.textContent = `${percentage}%`;
 
@@ -835,15 +301,12 @@
                     if(window.Notiflix) Notiflix.Notify.Success('<strong>RECOMPENSA LIBERADA!</strong> Você desbloqueou um desconto exclusivo no Plano Vitalício!', { plainText: false, timeout: 5000, fontSize: '16px', width: '320px' });
                     
                     if(vitalicioPlanCard && vitalicioPriceContainer && vitalicioCheckoutLink) {
-                        // Atualiza o preço com o desconto
                         vitalicioPriceContainer.innerHTML = `
                             <p class="text-xl text-red-400/70 line-through">De R$39,97</p>
                             <p class="font-teko text-5xl sm:text-6xl font-bold text-white mb-6">R$14<span class="text-3xl text-red-300">,97</span></p>
                         `;
-                        // !! IMPORTANTE !! Substitua pelo seu novo link de checkout de R$14,97
-                        vitalicioCheckoutLink.href = "#LINK_VITALICIO_DESCONTO";
-
-                        // Muda o visual do card para destacar a recompensa
+                        vitalicioCheckoutLink.href = discountedLink;
+                        
                         vitalicioPlanCard.classList.remove('border-red-500', 'pulse-glow');
                         vitalicioPlanCard.classList.add('border-yellow-400');
                         vitalicioPlanCard.style.boxShadow = '0 0 40px rgba(250, 204, 21, 0.5)';
@@ -853,20 +316,55 @@
             }
         }
         
-        // ... (O restante do seu JavaScript para 'completeTask', 'purchase-link', etc. permanece aqui) ...
-        // É importante garantir que o rastreamento do 'InitiateCheckout' capture os dados de cada plano corretamente.
+        function completeTask(taskName) {
+            if (journeyCompleted || !tasks[taskName] || tasks[taskName].completed) return;
+            tasks[taskName].completed = true;
+            
+            const taskElement = tasks[taskName].element;
+            if (taskElement) {
+                taskElement.classList.remove('text-gray-500');
+                taskElement.classList.add('text-green-400');
+                taskElement.querySelector('i').classList.replace('far', 'fas');
+            }
 
+            if (typeof fbq === 'function') {
+                fbq('trackCustom', 'JornadaDoCapudo', { mission_completed: taskName });
+            }
+
+            updateGamifiedProgress();
+        }
+        
+        // Event Listeners para a gamificação
+        const mainToggleBtn = document.getElementById('app-main-toggle-btn');
+        if(mainToggleBtn) mainToggleBtn.addEventListener('click', () => { 
+            if(!tasks.activated.completed) completeTask('activated');
+        });
+
+        document.querySelectorAll('input[data-gamify-task="aim"]').forEach(toggle => {
+            toggle.addEventListener('change', () => {
+                const checkedAimToggles = document.querySelectorAll('input[data-gamify-task="aim"]:checked').length;
+                if (checkedAimToggles >= 3) {
+                    completeTask('testedAim');
+                }
+            });
+        });
+
+        const applyOptimizationBtn = document.getElementById('apply-optimization-btn');
+        if(applyOptimizationBtn) applyOptimizationBtn.addEventListener('click', () => {
+            if(!tasks.optimized.completed) completeTask('optimized');
+        });
+
+
+        // Lógica do Rastreamento de Checkout
         document.querySelectorAll('.purchase-link').forEach(link => {
-            link.addEventListener("click", function(event) {
-                const planCard = event.currentTarget.closest('div.flex.flex-col');
+            link.addEventListener("click", function() {
+                const planCard = this.closest('div.flex.flex-col');
                 let planName = 'Plano Desconhecido';
                 let planValue = 0.00;
                 let contentId = 'plano_desconhecido';
 
                 if (planCard) {
                     const planTitleEl = planCard.querySelector('h3');
-                    const planPriceEl = planCard.querySelector('.font-teko');
-                    
                     if (planTitleEl) {
                         planName = planTitleEl.textContent.trim();
                         if (planName.includes('Mensal')) {
@@ -892,155 +390,9 @@
                 }
             });
         });
-
         
-        // ... O restante do seu JavaScript de simulação do APP permanece aqui ...
-        // [COLE O RESTANTE DO SEU SCRIPT ORIGINAL A PARTIR DA LÓGICA DA SIMULAÇÃO DO APP AQUI]
-        const mainToggleBtn = document.getElementById('app-main-toggle-btn');
-        const floatingPanel = document.getElementById('app-floating-panel');
-        const navButtons = document.querySelectorAll('.app-nav-button');
-        const panelPages = document.querySelectorAll('.app-panel-page');
-        const statusIndicators = document.getElementById('status-indicators');
-        const quickFunctions = document.getElementById('quick-functions');
-        const statLatency = document.querySelector('[data-stat="latency"]');
-        const statFps = document.querySelector('[data-stat="fps"]');
-        const statPrecision = document.querySelector('[data-stat="precision"]');
-        const allToggles = document.querySelectorAll('input[type="checkbox"]');
-        const sensiSliders = document.querySelectorAll('.sensi-slider');
-        const applyOptimizationBtn = document.getElementById('apply-optimization-btn');
-        const generateConfigButton = document.getElementById('generate-config-button');
-        const aiResultDiv = document.getElementById('ai-result');
-        let isAppOn = false;
-        const BASE_LATENCY = 45, BASE_FPS = 75, MAX_FPS = 120, BASE_PRECISION = 20;
-
-        function updateDashboardStats() {
-            if (!isAppOn || !statLatency || !statFps || !statPrecision) {
-                if(statLatency) statLatency.textContent = '--';
-                if(statFps) statFps.textContent = '--';
-                if(statPrecision) statPrecision.textContent = '+0%';
-                if(statLatency) [statLatency, statFps, statPrecision].forEach(el => el.classList.remove('text-green-400'));
-                return
-            };
-            let currentLatency = BASE_LATENCY, currentFps = BASE_FPS, currentPrecision = BASE_PRECISION;
-            document.querySelectorAll('input[data-effect]:checked').forEach(toggle => {
-                const effect = toggle.dataset.effect, value = parseInt(toggle.dataset.value, 10);
-                if (effect === 'latency') currentLatency += value;
-                if (effect === 'fps') currentFps += value;
-                if (effect === 'precision') currentPrecision += value;
-            });
-            let totalSensi = 0;
-            sensiSliders.forEach(slider => { totalSensi += parseInt(slider.value, 10) });
-            currentPrecision += Math.max(0, Math.round((totalSensi / sensiSliders.length - 100) / 10));
-            statLatency.textContent = `${Math.max(17,currentLatency)}ms`;
-            statFps.textContent = Math.min(MAX_FPS, currentFps);
-            statPrecision.textContent = `+${currentPrecision}%`;
-            [statLatency, statFps, statPrecision].forEach(el => el.classList.add('text-green-400'));
-        }
-        
-        if(mainToggleBtn){
-            mainToggleBtn.addEventListener('click', () => {
-                const toggleSpan = mainToggleBtn.querySelector('span');
-                const toggleBg = mainToggleBtn.querySelector('div.bg-gray-800');
-                isAppOn = !isAppOn;
-                if (isAppOn) {
-                    toggleSpan.textContent = 'ON';
-                    toggleSpan.classList.remove('text-[#E53935]');
-                    toggleSpan.classList.add('text-green-500');
-                    if(toggleBg) toggleBg.classList.add('bg-[#E53935]');
-                    if(floatingPanel) floatingPanel.style.display = 'block';
-                    mainToggleBtn.classList.remove('pulse-attention');
-                    if(statusIndicators) statusIndicators.classList.remove('opacity-50');
-                    if(quickFunctions) quickFunctions.classList.remove('opacity-50', 'pointer-events-none');
-                    completeTask('activated');
-                } else {
-                    toggleSpan.textContent = 'OFF';
-                    toggleSpan.classList.add('text-[#E53935]');
-                    toggleSpan.classList.remove('text-green-500');
-                    if(toggleBg) toggleBg.classList.remove('bg-[#E53935]');
-                    if(floatingPanel) floatingPanel.style.display = 'none';
-                    mainToggleBtn.classList.add('pulse-attention');
-                    if(statusIndicators) statusIndicators.classList.add('opacity-50');
-                    if(quickFunctions) quickFunctions.classList.add('opacity-50', 'pointer-events-none');
-                }
-                updateDashboardStats();
-            });
-        }
-        
-        navButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const pageId = button.dataset.page;
-                navButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                panelPages.forEach(page => { if(page) page.style.display = page.id === pageId ? 'block' : 'none'; });
-            });
-        });
-
-        sensiSliders.forEach(slider => {
-            const valueDisplay = slider.previousElementSibling.querySelector('[data-sensi-value]');
-            slider.addEventListener('input', (event) => { if(valueDisplay) valueDisplay.textContent = event.target.value; updateDashboardStats(); });
-        });
-
-        allToggles.forEach(toggle => {
-            toggle.addEventListener('change', () => {
-                const syncId = toggle.dataset.sync;
-                if (syncId) { const targetToggle = document.getElementById(syncId); if(targetToggle) targetToggle.checked = toggle.checked; }
-                const mainId = toggle.id;
-                document.querySelectorAll(`[data-sync="${mainId}"]`).forEach(t => { t.checked = toggle.checked; });
-                
-                if (toggle.dataset.gamifyTask === 'aim') {
-                    const checkedAimToggles = document.querySelectorAll('input[data-gamify-task="aim"]:checked').length;
-                    if (checkedAimToggles >= 3) {
-                        completeTask('testedAim');
-                    }
-                }
-                updateDashboardStats();
-            });
-        });
-
-        document.querySelectorAll('.clickable-function').forEach(func => {
-            func.addEventListener('click', (e) => {
-                if (!e.target.matches('input') && !e.target.matches('label')) {
-                    const checkbox = func.querySelector('input[type="checkbox"]');
-                    if (checkbox) { checkbox.checked = !checkbox.checked; checkbox.dispatchEvent(new Event('change')); }
-                }
-                func.classList.add('clicked');
-                func.addEventListener('animationend', () => { func.classList.remove('clicked'); }, { once: true });
-            });
-        });
-        
-        if(generateConfigButton){
-            generateConfigButton.addEventListener('click', () => {
-                if(aiResultDiv) {
-                    aiResultDiv.classList.remove('hidden');
-                    aiResultDiv.innerHTML = `<p class="text-yellow-400 text-center font-bold">Função indisponível na demonstração.<br><span class="font-normal text-xs text-gray-300">Disponível apenas na versão completa.</span></p>`;
-                }
-            });
-        }
-
-        if(applyOptimizationBtn) {
-            applyOptimizationBtn.addEventListener('click', () => {
-                const originalText = applyOptimizationBtn.innerHTML;
-                applyOptimizationBtn.innerHTML = `<i class="fa-solid fa-spinner spin-loader"></i> Otimizando...`;
-                applyOptimizationBtn.disabled = true;
-                setTimeout(() => {
-                    applyOptimizationBtn.innerHTML = `<i class="fa-solid fa-check"></i> Otimizado!`;
-                    applyOptimizationBtn.classList.remove('bg-gray-700', 'hover:bg-gray-600');
-                    applyOptimizationBtn.classList.add('bg-green-600');
-                    completeTask('optimized');
-                    setTimeout(() => {
-                        applyOptimizationBtn.innerHTML = originalText;
-                        applyOptimizationBtn.disabled = false;
-                        applyOptimizationBtn.classList.remove('bg-green-600');
-                        applyOptimizationBtn.classList.add('bg-gray-700', 'hover:bg-gray-600');
-                    }, 2000);
-                }, 1500);
-            });
-        }
-
-
     });
     </script>
 
 </body>
 </html>
-
