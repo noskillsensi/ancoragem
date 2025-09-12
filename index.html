@@ -7,7 +7,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/notiflix@2.6.0/dist/notiflix-aio-2.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+    <link rel="stylesheet" href="./style.css">
+
     <script>
       window.pixelId = "687c11e3a04e4348ef2a8d8d";
       var a = document.createElement("script");
@@ -36,73 +37,12 @@
     fbq('init', '1767511740661543'); 
     fbq('track', 'PageView');
     fbq('track', 'ViewContent', {
-        content_name: 'Página de Vendas Gamificada - Ancoragem',
+        content_name: 'Página de Vendas Gamificada - Aplicativo Noskill',
         content_category: 'Software'
     });
     </script>
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;500;700&family=Poppins:wght@400;600;700&display=swap');
-        
-        html, body {
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-        body { font-family: 'Poppins', sans-serif; background-color: #000; color: #e5e7eb; }
-        .font-teko { font-family: 'Teko', sans-serif; }
-        .notiflix-notify {
-            background-color: #0a0a0a !important; 
-            color: #e5e7eb !important; 
-            border-left: 4px solid #ef4444 !important;
-            box-shadow: 0px 0px 20px rgba(239, 68, 68, 0.25) !important; 
-            border-radius: 8px !important;
-            font-family: 'Poppins', sans-serif !important;
-        }
-        .notiflix-notify-success {
-            border-left: 4px solid #4ade80 !important;
-            box-shadow: 0px 0px 20px rgba(74, 222, 128, 0.25) !important; 
-        }
-        .notiflix-notify-message strong {
-            color: #f87171 !important;
-            font-weight: 700 !important;
-        }
-        .notiflix-notify-success .notiflix-notify-message strong {
-            color: #4ade80 !important;
-        }
-        .marquee-container { overflow: hidden; white-space: nowrap; }
-        .marquee-content { display: inline-block; animation: marquee 30s linear infinite; }
-        .ken-burns { animation: kenburns 20s ease-out both infinite; }
-        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .animate-fade-in { opacity: 1; transform: translateY(0); }
-        .pulse-glow { animation: pulse-glow 2s infinite; }
-        .spin-slow { animation: spin 20s linear infinite; }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
-        @keyframes kenburns { 0% { transform: scale(1) translate(0, 0); } 50% { transform: scale(1.1) translate(-2%, 2%); } 100% { transform: scale(1) translate(0, 0); } }
-        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.4), 0 0 0px 3px rgba(239, 68, 68, 0.6); } 50% { box-shadow: 0 0 40px rgba(239, 68, 68, 0.6), 0 0 0px 3px rgba(239, 68, 68, 0.6); } }
-        @keyframes click-effect { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
-        .clicked { animation: click-effect 0.2s ease-in-out; }
-        @keyframes pulse-attention { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 10px 15px rgba(229, 57, 53, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(229, 57, 53, 0); } }
-        .pulse-attention { animation: pulse-attention 2s infinite; }
-        @keyframes spin-loader { to { transform: rotate(360deg); } }
-        .spin-loader { animation: spin-loader 1s linear infinite; }
-        .phone-frame { position: relative; width: 100%; max-width: 410px; aspect-ratio: 410 / 820; background-color: #000; border: 8px solid #111; border-radius: 48px; padding: 8px; box-sizing: border-box; margin: auto; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
-        .phone-screen { position: relative; width: 100%; height: 100%; background-color: #121212; border-radius: 40px; overflow: hidden; color: #FFFFFF; transform: scale(1); }
-        .phone-screen .app-nav-button.active i { color: #E53935; }
-        .phone-screen .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-        .phone-screen .custom-scrollbar::-webkit-scrollbar-track { background: #1E1E1E; }
-        .phone-screen .custom-scrollbar::-webkit-scrollbar-thumb { background: #E53935; border-radius: 4px; }
-        .switch-label { transition: background-color 0.2s ease-in-out; }
-        .switch-bg { transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out; transform: translateX(0); }
-        .switch-bg:checked { background-color: #E53935; }
-        .switch-bg:checked + .switch-label { background-color: #E53935; }
-        .switch-bg.w-6:checked { transform: translateX(16px); }
-        .switch-bg.w-5:checked { transform: translateX(12px); }
-        .progress-bar-inner { transition: width 0.5s ease-in-out; }
-    </style>
 </head>
-<body>
-
+<body class="bg-black text-gray-200">
     <main>
         <section class="relative flex items-center justify-center pt-20 pb-10 px-4 sm:px-6 lg:px-8 overflow-hidden bg-black min-h-screen">
             <div class="absolute inset-0 z-0">
@@ -132,7 +72,7 @@
                     Controle Total na Palma da Sua Mão
                 </h2>
                 <p class="text-lg text-gray-400 mt-2">
-                    Prove que você é brabo! Complete a <span class="font-bold text-white">Jornada do Capudo</span> e libere um <span class="font-bold text-red-500">desconto secreto</span> no plano mais completo.
+                    Prove que você é brabo! Complete a <span class="font-bold text-white">Jornada do Capudo</span> e libere uma <span class="font-bold text-red-500">oferta secreta</span> só pra você.
                 </p>
             </div>
             <div id="gamification-progress" class="w-full max-w-4xl mx-auto mb-6 reveal">
@@ -253,63 +193,62 @@
                 </div>
             </div>
         </section>
-
+        
         <section id="planos" class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-black">
             <div class="max-w-6xl mx-auto reveal">
                 <div class="text-center mb-12 sm:mb-16">
-                    <p class="font-teko text-2xl text-red-500 mb-2 uppercase tracking-widest">Oferta Por Tempo Limitado</p>
+                    <p class="font-teko text-2xl text-red-500 mb-2 uppercase tracking-widest">Oferta Exclusiva</p>
                     <h2 class="font-teko text-4xl sm:text-5xl md:text-6xl font-bold text-white uppercase">
-                        Escolha seu Plano
+                        Acesso Liberado para Você
                     </h2>
                     <p class="text-lg text-gray-400 max-w-3xl mx-auto mt-4">
-                        Resultado imediato por um preço que cabe no seu bolso. Sem desculpa pra não dominar as partidas.
+                        Escolha o plano que melhor se encaixa na sua jornada para o topo e domine os campos de batalha hoje mesmo.
                     </p>
                 </div>
                 <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
                     
-                    <div class="bg-gray-900/50 border border-gray-800 p-8 text-center transition-all duration-300 h-full flex flex-col rounded-2xl hover:border-gray-700 hover:scale-105">
+                    <div class="bg-gray-900/50 border border-gray-800 p-8 text-center h-full flex flex-col rounded-2xl" data-plan-name="Plano Mensal" data-plan-value="4.97">
                         <h3 class="font-teko text-3xl sm:text-4xl font-bold text-white uppercase">Plano Mensal</h3>
                         <p class="text-gray-400 mb-4">Acesso por 30 dias</p>
                         <p class="font-teko text-5xl sm:text-6xl font-bold text-white mb-6">R$4<span class="text-3xl text-gray-400">,97</span></p>
                         <div class="border-t border-gray-800 my-6"></div>
-                        <ul class="space-y-4 text-gray-300 mb-8 text-left flex-grow">
-                            <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-red-500 mr-3"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Funções Básicas de Mira</span></li>
-                            <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-red-500 mr-3"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Otimizador de FPS</span></li>
-                            <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-red-500 mr-3"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Suporte via WhatsApp</span></li>
+                        <ul class="space-y-4 text-gray-400 mb-8 text-left flex-grow">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-red-500 w-5 mr-3"></i><span>Todas as Funções de Mira</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-red-500 w-5 mr-3"></i><span>Otimização de FPS e Ping</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-red-500 w-5 mr-3"></i><span>Suporte Básico</span></li>
                         </ul>
-                        <a href="https://www.ggcheckout.com/checkout/v2/ArlvE9iM7rzThbdCzCkC" target="_blank" rel="noopener noreferrer" class="purchase-link w-full mt-auto inline-block text-center bg-gray-700 hover:bg-gray-600 text-white px-6 py-4 rounded-lg font-bold">ESCOLHER PLANO</a>
+                        <a href="https://pay.noskillsensi.com.br/xyCwQksA" target="_blank" rel="noopener noreferrer" class="purchase-link w-full mt-auto inline-block text-center bg-gray-800 hover:bg-red-700 text-white px-6 py-4 rounded-lg font-bold">ESCOLHER PLANO</a>
                     </div>
-                    
-                    <div id="vitalicio-plan-card" class="bg-gradient-to-b from-red-900/50 to-gray-900/50 border-2 border-red-500 p-8 text-center relative transform lg:scale-110 shadow-2xl shadow-red-500/20 h-full flex flex-col rounded-2xl pulse-glow">
+
+                    <div id="vitalicio-plan-card" class="bg-gradient-to-b from-red-900/50 to-gray-900/50 border-2 border-red-500 p-8 text-center relative transform lg:scale-110 shadow-2xl shadow-red-500/20 h-full flex flex-col rounded-2xl pulse-glow" data-plan-name="Plano Permanente" data-plan-value="14.97">
                         <div class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
-                            <span class="inline-block px-6 py-2 text-sm text-white bg-red-600 rounded-full font-bold uppercase tracking-wider shadow-lg">Mais Escolhido</span>
+                            <span class="inline-block px-6 py-2 text-sm text-white bg-red-600 rounded-full font-bold uppercase tracking-wider shadow-lg">MAIS VENDIDO</span>
                         </div>
                         <h3 class="font-teko text-3xl sm:text-4xl font-bold text-white uppercase">Plano Permanente</h3>
                         <p class="text-red-300 mb-4">Pague uma vez, use para sempre</p>
                         <div id="vitalicio-price-container">
-                            <p class="text-xl text-red-400/70 line-through">De R$39,97</p>
                             <p class="font-teko text-5xl sm:text-6xl font-bold text-white mb-6">R$14<span class="text-3xl text-red-300">,97</span></p>
                         </div>
                         <div class="border-t border-red-500/30 my-6"></div>
                         <ul class="space-y-4 text-gray-300 mb-8 text-left flex-grow">
-                            <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-red-400 mr-3"><polyline points="20 6 9 17 4 12"></polyline></svg><span><span class="font-bold">Tudo dos outros planos</span></span></li>
-                            <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-red-400 mr-3"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Headtracking: <span class="font-bold">Taxa de HS +200%</span></span></li>
-                            <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-red-400 mr-3"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Suporte Premium WhatsApp</span></li>
+                           <li class="flex items-center"><i class="fa-solid fa-check text-red-400 w-5 mr-3"></i><span><span class="font-bold">Todas as Funções de Mira</span></span></li>
+                           <li class="flex items-center"><i class="fa-solid fa-check text-red-400 w-5 mr-3"></i><span>Headtracking: <span class="font-bold">Taxa de HS +200%</span></span></li>
+                           <li class="flex items-center"><i class="fa-solid fa-check text-red-400 w-5 mr-3"></i><span>Suporte Premium WhatsApp</span></li>
                         </ul>
-                        <a id="vitalicio-checkout-link" href="https://www.ggcheckout.com/checkout/v2/JKtIaLnsjjTVjlVz32sA" target="_blank" rel="noopener noreferrer" class="purchase-link w-full mt-auto inline-block text-center bg-red-600 hover:bg-red-700 text-white px-6 py-4 rounded-lg font-bold transform hover:scale-105">QUERO ESTE PLANO</a>
+                        <a id="vitalicio-checkout-link" href="https://pay.noskillsensi.com.br/JbSgkcPQ" target="_blank" rel="noopener noreferrer" class="purchase-link w-full mt-auto inline-block text-center bg-red-600 hover:bg-red-700 text-white px-6 py-4 rounded-lg font-bold transform hover:scale-105">ATIVAR MODO CAPUDO!</a>
                     </div>
 
-                    <div class="bg-gray-900/50 border border-gray-800 p-8 text-center transition-all duration-300 h-full flex flex-col rounded-2xl hover:border-gray-700 hover:scale-105">
+                    <div class="bg-gray-900/50 border border-gray-800 p-8 text-center h-full flex flex-col rounded-2xl" data-plan-name="Plano Trimestral" data-plan-value="9.97">
                         <h3 class="font-teko text-3xl sm:text-4xl font-bold text-white uppercase">Plano Trimestral</h3>
-                        <p class="text-gray-400 mb-4">O melhor custo-benefício</p>
+                        <p class="text-gray-400 mb-4">Melhor custo-benefício</p>
                         <p class="font-teko text-5xl sm:text-6xl font-bold text-white mb-6">R$9<span class="text-3xl text-gray-400">,97</span></p>
                         <div class="border-t border-gray-800 my-6"></div>
-                        <ul class="space-y-4 text-gray-300 mb-8 text-left flex-grow">
-                                <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-red-500 mr-3"><polyline points="20 6 9 17 4 12"></polyline></svg><span><span class="font-bold">Tudo do Plano Mensal</span></span></li>
-                                <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-red-500 mr-3"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Módulo de Precisão em Movimento</span></li>
-                                <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-red-500 mr-3"><polyline points="20 6 9 17 4 12"></polyline></svg><span>BÔNUS: SENSI DOS FAMOSOS</span></li>
+                        <ul class="space-y-4 text-gray-400 mb-8 text-left flex-grow">
+                                <li class="flex items-center"><i class="fa-solid fa-check text-red-500 w-5 mr-3"></i><span><span class="font-bold">Tudo do Plano Mensal</span></span></li>
+                                <li class="flex items-center"><i class="fa-solid fa-check text-red-500 w-5 mr-3"></i><span>Módulo de Precisão em Movimento</span></li>
+                                <li class="flex items-center"><i class="fa-solid fa-check text-red-500 w-5 mr-3"></i><span>Bônus: Sensi dos Famosos</span></li>
                         </ul>
-                        <a href="https://www.ggcheckout.com/checkout/v2/MWmYIHuIC9f4wfTXlUOf" target="_blank" rel="noopener noreferrer" class="purchase-link w-full mt-auto inline-block text-center bg-gray-700 hover:bg-gray-600 text-white px-6 py-4 rounded-lg font-bold">ESCOLHER PLANO</a>
+                        <a href="https://pay.noskillsensi.com.br/DDALKzNI" target="_blank" rel="noopener noreferrer" class="purchase-link w-full mt-auto inline-block text-center bg-gray-800 hover:bg-red-700 text-white px-6 py-4 rounded-lg font-bold">ESCOLHER PLANO</a>
                     </div>
                 </div>
             </div>
@@ -371,419 +310,7 @@
         </div>
     </footer>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Lógica de Rolagem Suave
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetElement = document.querySelector(this.getAttribute('href'));
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // --- LÓGICA DA GAMIFICAÇÃO FINAL ---
-        const progressBar = document.getElementById('progress-bar');
-        const progressText = document.getElementById('progress-text');
-        const planosSection = document.getElementById('planos');
-        const vitalicioPlanCard = document.getElementById('vitalicio-plan-card');
-        const vitalicioPriceContainer = document.getElementById('vitalicio-price-container');
-        const vitalicioCheckoutLink = document.getElementById('vitalicio-checkout-link');
-        let journeyCompleted = false;
-
-        const MAX_POINTS = 100;
-        let currentPoints = 0;
-        const tasks = {
-            activated: { completed: false, points: 30, element: document.getElementById('task-1') },
-            testedAim: { completed: false, points: 40, element: document.getElementById('task-2') },
-            optimized: { completed: false, points: 30, element: document.getElementById('task-3') }
-        };
-
-        function updateGamifiedProgress() {
-            if (journeyCompleted) return;
-            currentPoints = 0;
-            if (tasks.activated.completed) currentPoints += tasks.activated.points;
-            if (tasks.testedAim.completed) currentPoints += tasks.testedAim.points;
-            if (tasks.optimized.completed) currentPoints += tasks.optimized.points;
-
-            const percentage = Math.round((currentPoints / MAX_POINTS) * 100);
-            if(progressBar) progressBar.style.width = `${percentage}%`;
-            if(progressText) progressText.textContent = `${percentage}%`;
-
-            if (percentage === 100 && !journeyCompleted) {
-                journeyCompleted = true;
-                setTimeout(() => {
-                    if(window.Notiflix) Notiflix.Notify.Success('<strong>RECOMPENSA LIBERADA!</strong> Você desbloqueou um desconto exclusivo no Plano Permanente!', { plainText: false, timeout: 5000, fontSize: '16px', width: '320px' });
-                    
-                    if(vitalicioPlanCard && vitalicioPriceContainer && vitalicioCheckoutLink) {
-                        vitalicioPriceContainer.innerHTML = `
-                            <p class="text-xl text-red-400/70 line-through">De R$39,97</p>
-                            <p class="font-teko text-5xl sm:text-6xl font-bold text-white mb-6">R$14<span class="text-3xl text-red-300">,97</span></p>
-                        `;
-                        
-                        // O link de checkout não muda, pois a ggCheckout pode lidar com o preço via API ou o link já ser para o valor final. Mantemos o link principal.
-                        // vitalicioCheckoutLink.href = "https://www.ggcheckout.com/checkout/v2/JKtIaLnsjjTVjlVz32sA";
-                        
-                        vitalicioPlanCard.classList.remove('border-red-500', 'pulse-glow');
-                        vitalicioPlanCard.classList.add('border-yellow-400');
-                        vitalicioPlanCard.style.boxShadow = '0 0 40px rgba(250, 204, 21, 0.5)';
-                    }
-                    if(planosSection) planosSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 500);
-            }
-        }
-
-        function completeTask(taskName) {
-            if (journeyCompleted || !tasks[taskName] || tasks[taskName].completed) return;
-            tasks[taskName].completed = true;
-            
-            const taskElement = tasks[taskName].element;
-            if (taskElement) {
-                taskElement.classList.remove('text-gray-500');
-                taskElement.classList.add('text-green-400');
-                taskElement.querySelector('i').classList.replace('far', 'fas');
-            }
-
-            let achievementText = '';
-            if (taskName === 'activated') achievementText = '<strong>CONQUISTA:</strong> Painel Ativado!';
-            if (taskName === 'testedAim') achievementText = '<strong>CONQUISTA:</strong> Mira de Elite!';
-            if (taskName === 'optimized') achievementText = '<strong>CONQUISTA:</strong> Máquina Otimizada!';
-            
-            if (achievementText && window.Notiflix) {
-                Notiflix.Notify.Success(achievementText, { plainText: false, timeout: 3000 });
-            }
-
-            if (typeof fbq === 'function') {
-                fbq('trackCustom', 'JornadaDoCapudo', {
-                    mission_completed: taskName
-                });
-            }
-
-            updateGamifiedProgress();
-        }
-
-        // Lógica do Carrossel de Feedback
-        const carouselContent = document.getElementById('carousel-content');
-        const dotsContainer = document.getElementById('carousel-dots');
-        const feedbackImages = ["https://i.imgur.com/NC8sgSy.png", "https://i.imgur.com/UajvZM1.png", "https://i.imgur.com/6LpvOAk.png", "https://i.imgur.com/Pd7spkl.png", "https://i.imgur.com/3GIql6p.png", "https://i.imgur.com/pRBfwHH.png", "https://i.imgur.com/jHHTrMH.png", "https://i.imgur.com/v7VueRe.png", "https://i.imgur.com/rWUmPO3.png", "https://i.imgur.com/66Z2P2J.png"];
-        let currentSlide = 0;
-        
-        function getSlidesInView() { 
-            if (window.innerWidth >= 768) return 3; 
-            return 2; 
-        }
-
-        function updateCarousel() { 
-            if (!carouselContent || carouselContent.children.length === 0) return; 
-            const slidesInView = getSlidesInView();
-            const maxSlideIndex = Math.max(0, feedbackImages.length - slidesInView);
-            if (currentSlide > maxSlideIndex) currentSlide = maxSlideIndex;
-            if (currentSlide < 0) currentSlide = 0;
-            
-            const itemWidth = carouselContent.children[0].offsetWidth;
-            const transformValue = -currentSlide * itemWidth;
-            carouselContent.style.transform = `translateX(${transformValue}px)`;
-            
-            if(dotsContainer) {
-                document.querySelectorAll(".carousel-dot").forEach((dot, index) => { 
-                    dot.classList.toggle("bg-red-500", index === currentSlide);
-                    dot.classList.toggle("bg-gray-700", index !== currentSlide);
-                });
-            }
-        }
-
-        function renderCarousel() { 
-            if (!carouselContent || !dotsContainer) return; 
-            const slidesInView = getSlidesInView();
-            const slideWidthPercent = 100 / slidesInView; 
-            
-            carouselContent.innerHTML = feedbackImages.map(src => `<div class="flex-shrink-0 p-2" style="width: ${slideWidthPercent}%"><img src="${src}" class="w-full h-auto rounded-lg" loading="lazy" alt="Feedback de cliente" /></div>`).join("");
-            
-            const numDots = Math.max(0, feedbackImages.length - slidesInView + 1);
-            dotsContainer.innerHTML = Array.from({ length: numDots }).map((_, index) => `<button data-slide-to="${index}" class="carousel-dot w-2.5 h-2.5 rounded-full transition-colors duration-300"></button>`).join("");
-            updateCarousel();
-        }
-
-        function navigateCarousel(direction) { 
-            const slidesInView = getSlidesInView();
-            const maxSlideIndex = Math.max(0, feedbackImages.length - slidesInView);
-            currentSlide += direction;
-            if (currentSlide > maxSlideIndex) currentSlide = 0;
-            else if (currentSlide < 0) currentSlide = maxSlideIndex;
-            updateCarousel();
-        }
-
-        if(document.getElementById("next-slide")) document.getElementById("next-slide").addEventListener("click", () => navigateCarousel(1));
-        if(document.getElementById("prev-slide")) document.getElementById("prev-slide").addEventListener("click", () => navigateCarousel(-1));
-        if(dotsContainer) dotsContainer.addEventListener("click", e => { 
-            if (e.target.matches(".carousel-dot")) {
-                currentSlide = parseInt(e.target.dataset.slideTo);
-                updateCarousel();
-            }
-        });
-        window.addEventListener("resize", renderCarousel);
-        renderCarousel();
-        setInterval(() => navigateCarousel(1), 5000);
-
-        // Lógica do FAQ
-        const faqContainer = document.getElementById('faq-container');
-        const faqData = [{ question: "O aplicativo dá ban? É seguro?", answer: "Não. Nosso aplicativo é 100% seguro e funciona como uma ferramenta de otimização e sensibilidade, sem alterar os arquivos do jogo. Pode usar sem medo de banimento." }, { question: "Funciona em todos os celulares?", answer: "Sim, o Aplicativo Noskill é compatível com todos os dispositivos Android e iOS. Após a compra, você recebe o acesso para instalar e configurar facilmente no seu celular." }, { question: "Como recebo o acesso após a compra?", answer: "A entrega é imediata. Assim que o pagamento for confirmado, você receberá um e-mail com o link para download do aplicativo e todas as instruções de instalação e uso." }, { question: "As funções são hacks?", answer: "Não. Nossas ferramentas usam tecnologia legal para simular a precisão de um jogador de elite, mas sem nenhum risco de ban, porque não modificam o jogo." }, { question: "Tenho garantia?", answer: "Sim! Oferecemos uma garantia de 7 dias. Se você não sentir uma melhora clara na sua jogabilidade ou não estiver satisfeito, devolvemos seu dinheiro." }];
-        let openFaq = 0;
-        function renderFaq() { 
-            if (!faqContainer) return; 
-            faqContainer.innerHTML = faqData.map((e, t) => `<div class="bg-gray-900 border border-gray-800 rounded-lg overflow-hidden transition-all duration-300 ${openFaq===t?"border-red-500/50":""}"><button data-faq-index="${t}" class="faq-toggle w-full flex justify-between items-center text-left p-6 cursor-pointer hover:bg-gray-800/50"><h4 class="font-semibold text-lg text-white pr-4">${e.question}</h4><div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-gray-800/50 rounded-full"><span class="text-red-500 transition-transform duration-300 ${openFaq===t?"rotate-180":""}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></span></div></button><div class="overflow-hidden transition-all duration-500 ease-in-out" style="max-height: ${openFaq===t?"200px":"0px"}"><div class="px-6 pb-6 pt-0"><p class="text-gray-400">${e.answer}</p></div></div></div>`).join("");
-            document.querySelectorAll(".faq-toggle").forEach(btn => { 
-                btn.addEventListener("click", e => { 
-                    const t = parseInt(e.currentTarget.dataset.faqIndex); 
-                    openFaq = openFaq === t ? null : t;
-                    renderFaq();
-                });
-            });
-        }
-        renderFaq();
-
-        // Lógica do Scroll Reveal
-        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('animate-fade-in') }) }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        
-        // --- LÓGICA DAS NOTIFICAÇÕES (ATUALIZADA) ---
-        function showPurchaseNotification() {
-            if (!window.Notiflix) return;
-
-            const firstNames = ['João', 'Lucas', 'Guilherme', 'Matheus', 'Pedro', 'Gabriel', 'Enzo', 'Miguel', 'Arthur', 'Davi', 'Maria', 'Ana', 'Julia', 'Beatriz'];
-            const lastInitials = ['S.', 'M.', 'A.', 'L.', 'C.', 'P.', 'R.', 'F.', 'G.', 'O.'];
-            const nicks = ['xProPlayer', 'K1ller77', 'L3gacy', 'ShadowBR', 'zTrollMaster', 'CapudoFX', 'ReiDaBala', 'MestreDoCapa', 'Anjo_Caido', 'iNoob'];
-            const plans = ['o plano Mensal', 'o plano Trimestral', 'o plano Permanente'];
-            
-            const randomPlan = plans[Math.floor(Math.random() * plans.length)];
-            let buyer;
-
-            if (Math.random() > 0.4) { // 60% de chance de ser "Nome + Inicial"
-                const randomFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];
-                const randomInitial = lastInitials[Math.floor(Math.random() * lastInitials.length)];
-                buyer = `${randomFirstName} ${randomInitial}`;
-            } else { // 40% de chance de ser um nick
-                buyer = nicks[Math.floor(Math.random() * nicks.length)];
-            }
-
-            const message = `<strong>${buyer}</strong> acabou de garantir ${randomPlan}!`;
-            
-            Notiflix.Notify.Success(message, { 
-                position: "left-bottom", 
-                plainText: false, 
-                timeout: 4000,
-                fontSize: '15px',
-                width: '310px'
-            });
-        }
-        
-        // Inicia o ciclo de notificações
-        setInterval(showPurchaseNotification, 10000 + Math.random() * 5000); // Entre 10 e 15 segundos
-
-
-                // Lógica do Rastreamento de Checkout (VERSÃO CORRIGIDA E FINAL)
-document.querySelectorAll('.purchase-link').forEach(link => {
-    link.addEventListener("click", function(event) {
-        // 1. Previne o comportamento padrão do link.
-        event.preventDefault();
-
-        // Variáveis que vamos preencher
-        const destinationUrl = event.currentTarget.href;
-        let planName = 'Plano Desconhecido';
-        let planValue = 0.00;
-        let contentId = 'plano_desconhecido';
-        
-        // --- CORREÇÃO APLICADA AQUI ---
-        // Em vez de 'div.flex.flex-col', subimos para o elemento pai mais próximo
-        // que engloba todo o card, evitando a captura de elementos vizinhos.
-        const planCard = event.currentTarget.closest('[class*="bg-gray-900"], [class*="bg-gradient-to-b"]');
-
-        if (planCard) {
-            const planTitleEl = planCard.querySelector('h3');
-            if (planTitleEl) {
-                planName = planTitleEl.textContent.trim();
-                
-                if (planName.includes('Mensal')) {
-                    contentId = 'noskill_plano_mensal';
-                    planValue = 4.97;
-                } else if (planName.includes('Permanente')) {
-                    contentId = 'noskill_plano_permanente';
-                    // A variável 'journeyCompleted' é definida mais acima no seu script,
-                    // então esta lógica continuará funcionando perfeitamente.
-                    planValue = journeyCompleted ? 14.97 : 19.97;
-                } else if (planName.includes('Trimestral')) {
-                    contentId = 'noskill_plano_trimestral';
-                    planValue = 9.97;
-                }
-            }
-        }
-
-        // 2. Dispara o evento do Facebook Pixel.
-        if (typeof fbq === 'function') {
-            fbq('track', 'InitiateCheckout', {
-                content_ids: [contentId],
-                content_name: planName,
-                value: planValue,
-                currency: 'BRL'
-            });
-        }
-
-        // 3. Aguarda um instante para garantir o rastreio e abre a URL correta.
-        setTimeout(function() {
-            window.open(destinationUrl, '_blank');
-        }, 400); 
-    });
-});
-
-
-        // --- LÓGICA COMPLETA DA SIMULAÇÃO DO APP ---
-        const mainToggleBtn = document.getElementById('app-main-toggle-btn');
-        const floatingPanel = document.getElementById('app-floating-panel');
-        const navButtons = document.querySelectorAll('.app-nav-button');
-        const panelPages = document.querySelectorAll('.app-panel-page');
-        const statusIndicators = document.getElementById('status-indicators');
-        const quickFunctions = document.getElementById('quick-functions');
-        const statLatency = document.querySelector('[data-stat="latency"]');
-        const statFps = document.querySelector('[data-stat="fps"]');
-        const statPrecision = document.querySelector('[data-stat="precision"]');
-        const allToggles = document.querySelectorAll('input[type="checkbox"]');
-        const sensiSliders = document.querySelectorAll('.sensi-slider');
-        const applyOptimizationBtn = document.getElementById('apply-optimization-btn');
-        const generateConfigButton = document.getElementById('generate-config-button');
-        const aiResultDiv = document.getElementById('ai-result');
-        let isAppOn = false;
-        const BASE_LATENCY = 45, BASE_FPS = 75, MAX_FPS = 120, BASE_PRECISION = 20;
-
-        function updateDashboardStats() {
-            if (!statLatency || !statFps || !statPrecision) return;
-
-            if (!isAppOn) {
-                statLatency.textContent = '--';
-                statFps.textContent = '--';
-                statPrecision.textContent = '+0%';
-                [statLatency, statFps, statPrecision].forEach(el => el.classList.remove('text-green-400'));
-                return;
-            };
-
-            let currentLatency = BASE_LATENCY, currentFps = BASE_FPS, currentPrecision = BASE_PRECISION;
-            document.querySelectorAll('input[data-effect]:checked').forEach(toggle => {
-                const effect = toggle.dataset.effect, value = parseInt(toggle.dataset.value, 10);
-                if (effect === 'latency') currentLatency += value;
-                if (effect === 'fps') currentFps += value;
-                if (effect === 'precision') currentPrecision += value;
-            });
-            let totalSensi = 0;
-            sensiSliders.forEach(slider => { totalSensi += parseInt(slider.value, 10) });
-            currentPrecision += Math.max(0, Math.round((totalSensi / sensiSliders.length - 100) / 10));
-            statLatency.textContent = `${Math.max(17,currentLatency)}ms`;
-            statFps.textContent = Math.min(MAX_FPS, currentFps);
-            statPrecision.textContent = `+${currentPrecision}%`;
-            [statLatency, statFps, statPrecision].forEach(el => el.classList.add('text-green-400'));
-        }
-        
-        if(mainToggleBtn){
-            mainToggleBtn.addEventListener('click', () => {
-                const toggleSpan = mainToggleBtn.querySelector('span');
-                const toggleBg = mainToggleBtn.querySelector('div.bg-gray-800');
-                isAppOn = !isAppOn;
-                if (isAppOn) {
-                    toggleSpan.textContent = 'ON';
-                    toggleSpan.classList.remove('text-[#E53935]');
-                    toggleSpan.classList.add('text-green-500');
-                    if(toggleBg) toggleBg.classList.add('bg-[#E53935]');
-                    if(floatingPanel) floatingPanel.style.display = 'block';
-                    mainToggleBtn.classList.remove('pulse-attention');
-                    if(statusIndicators) statusIndicators.classList.remove('opacity-50');
-                    if(quickFunctions) quickFunctions.classList.remove('opacity-50', 'pointer-events-none');
-                    completeTask('activated');
-                } else {
-                    toggleSpan.textContent = 'OFF';
-                    toggleSpan.classList.add('text-[#E53935]');
-                    toggleSpan.classList.remove('text-green-500');
-                    if(toggleBg) toggleBg.classList.remove('bg-[#E53935]');
-                    if(floatingPanel) floatingPanel.style.display = 'none';
-                    mainToggleBtn.classList.add('pulse-attention');
-                    if(statusIndicators) statusIndicators.classList.add('opacity-50');
-                    if(quickFunctions) quickFunctions.classList.add('opacity-50', 'pointer-events-none');
-                }
-                updateDashboardStats();
-            });
-        }
-        
-        navButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const pageId = button.dataset.page;
-                navButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                panelPages.forEach(page => { if(page) page.style.display = page.id === pageId ? 'block' : 'none'; });
-            });
-        });
-
-        sensiSliders.forEach(slider => {
-            const valueDisplay = slider.previousElementSibling.querySelector('[data-sensi-value]');
-            slider.addEventListener('input', (event) => { if(valueDisplay) valueDisplay.textContent = event.target.value; updateDashboardStats(); });
-        });
-
-        allToggles.forEach(toggle => {
-            toggle.addEventListener('change', () => {
-                const syncId = toggle.dataset.sync;
-                if (syncId) { const targetToggle = document.getElementById(syncId); if(targetToggle) targetToggle.checked = toggle.checked; }
-                const mainId = toggle.id;
-                document.querySelectorAll(`[data-sync="${mainId}"]`).forEach(t => { t.checked = toggle.checked; });
-                
-                if (toggle.dataset.gamifyTask === 'aim') {
-                    const checkedAimToggles = document.querySelectorAll('input[data-gamify-task="aim"]:checked').length;
-                    if (checkedAimToggles >= 3) {
-                        completeTask('testedAim');
-                    }
-                }
-                updateDashboardStats();
-            });
-        });
-
-        document.querySelectorAll('.clickable-function').forEach(func => {
-            func.addEventListener('click', (e) => {
-                if (!e.target.matches('input') && !e.target.matches('label')) {
-                    const checkbox = func.querySelector('input[type="checkbox"]');
-                    if (checkbox) { checkbox.checked = !checkbox.checked; checkbox.dispatchEvent(new Event('change')); }
-                }
-                func.classList.add('clicked');
-                func.addEventListener('animationend', () => { func.classList.remove('clicked'); }, { once: true });
-            });
-        });
-        
-        if(generateConfigButton){
-            generateConfigButton.addEventListener('click', () => {
-                if(aiResultDiv) {
-                    aiResultDiv.classList.remove('hidden');
-                    aiResultDiv.innerHTML = `<p class="text-yellow-400 text-center font-bold">Função indisponível na demonstração.<br><span class="font-normal text-xs text-gray-300">Disponível apenas na versão completa.</span></p>`;
-                }
-            });
-        }
-
-        if(applyOptimizationBtn) {
-            applyOptimizationBtn.addEventListener('click', () => {
-                const originalText = applyOptimizationBtn.innerHTML;
-                applyOptimizationBtn.innerHTML = `<i class="fa-solid fa-spinner spin-loader"></i> Otimizando...`;
-                applyOptimizationBtn.disabled = true;
-                setTimeout(() => {
-                    applyOptimizationBtn.innerHTML = `<i class="fa-solid fa-check"></i> Otimizado!`;
-                    applyOptimizationBtn.classList.remove('bg-gray-700', 'hover:bg-gray-600');
-                    applyOptimizationBtn.classList.add('bg-green-600');
-                    completeTask('optimized');
-                    setTimeout(() => {
-                        applyOptimizationBtn.innerHTML = originalText;
-                        applyOptimizationBtn.disabled = false;
-                        applyOptimizationBtn.classList.remove('bg-green-600');
-                        applyOptimizationBtn.classList.add('bg-gray-700', 'hover:bg-gray-600');
-                    }, 2000);
-                }, 1500);
-            });
-        }
-    });
-    </script>
+    <script src="./app.js" defer></script>
 
 </body>
 </html>
