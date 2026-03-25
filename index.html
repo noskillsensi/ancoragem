@@ -312,5 +312,17 @@
 
     <script src="./app.js" defer></script>
 
+    <!-- Back Redirect: redireciona para /ofertaespecial ao clicar "voltar" -->
+    <script>
+    (function() {
+        if (!window.location.pathname.includes("ofertaespecial")) {
+            history.pushState(null, null, location.href);
+            window.addEventListener("popstate", function() {
+                window.location.href = "/ofertaespecial";
+            });
+        }
+    })();
+    </script>
+
 </body>
 </html>
