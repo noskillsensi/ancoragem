@@ -217,6 +217,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const planValue = parseFloat(planCard.dataset.planValue);
                 const contentId = `noskill_${planName.toLowerCase().replace(/ /g, '_')}`;
 
+                fbq('track', 'InitiateCheckout', {
+                    content_ids: [contentId],
+                    content_name: planName,
+                    value: planValue,
+                    currency: 'BRL',
+                    num_items: 1
+                });
                 fbq('track', 'AddToCart', {
                     content_ids: [contentId],
                     content_name: planName,
